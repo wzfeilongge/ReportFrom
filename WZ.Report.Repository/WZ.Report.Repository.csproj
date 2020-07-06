@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\WZ.Report.Api\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreeSql.DbContext" Version="1.6.0" />
+    <PackageReference Include="FreeSql.Provider.MySql" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WZ.Report.Common\WZ.Report.Common.csproj" />
+    <ProjectReference Include="..\WZ.Report.IRepository\WZ.Report.IRepository.csproj" />
+  </ItemGroup>
+
+</Project>

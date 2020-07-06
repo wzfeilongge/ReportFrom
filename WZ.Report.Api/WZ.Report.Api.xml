@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WZ.Report.Api</name>
+    </assembly>
+    <members>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.CreateAdminUser(WZ.Report.Application.SysViewModel.AddAdminUser)">
+            <summary>
+            添加一个管理员账户
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.CreateUser(WZ.Report.Application.SysViewModel.AddUserModel)">
+            <summary>
+            添加一个普通用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.GetUserinfo">
+            <summary>
+            获取所有用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.GetUserWriteState(System.Int32)">
+            <summary>
+            ID查询用户登记表格情况
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.DeleteUserTable(WZ.Report.Application.SysViewModel.DeleteUserTableModel)">
+            <summary>
+            删除一个用户ID的指定年份月份的表格数据
+            </summary>
+            <param name="deleteUserTableModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.QueryReport(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            管理员权限获取表格登记情况  ?部门负责人和班子成员返回的字段是一样的 党组书记的字段不一样 
+            </summary>
+            <param name="RoleId">1 部门负责人 2 党组书记  3 班子成员</param>
+            <param name="Year">要查询的年份</param>
+            <param name="PageIndex">当前页码</param>
+            <param name="PageSize">页码大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.ShowTableController.GetTable">
+            <summary>
+            获取表格数据
+            </summary>      
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.ShowTableController.GetWriteState(System.Int32,System.Int32)">
+            <summary>
+            获取是否可以填写表格
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.ShowTableController.WriteTable(WZ.Report.Application.WriteProjectDto.WriteModel)">
+            <summary>
+            写入表格数据
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.UserController.GetWriteInfo(System.Int32,System.Int32)">
+            <summary>
+            分页查询 登录用户的表格填写情况
+            </summary>
+            <param name="pageindex">当前页码</param>
+            <param name="pagesize">页码大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.UserController.Login(WZ.Report.Application.DTO.LoginViewModel)">
+            <summary>
+            登录
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Filter.GlobalExceptionsFilter.WriteLog(System.String,System.Exception)">
+            <summary>
+            自定义返回格式
+            </summary>
+            <param name="throwMsg"></param>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WZ.Report.Api.Filter.JsonErrorResponse.Message">
+            <summary>
+            生产环境的消息
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Api.Filter.JsonErrorResponse.DevelopmentMessage">
+            <summary>
+            开发环境的消息
+            </summary>
+        </member>
+    </members>
+</doc>

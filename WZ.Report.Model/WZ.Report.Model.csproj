@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\WZ.Report.Api\bin\Debug\</OutputPath>
+    <DocumentationFile>..\WZ.Report.Api\bin\Debug\WZ.Report.Model.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreeSql" Version="1.6.0-preview0620" />
+    <PackageReference Include="FreeSql.DbContext" Version="1.6.0-preview0620" />
+    <PackageReference Include="FreeSql.Extensions.JsonMap" Version="1.6.0-preview0620" />
+    <PackageReference Include="System.Security.Principal" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WZ.Report.Common\WZ.Report.Common.csproj" />
+  </ItemGroup>
+
+</Project>

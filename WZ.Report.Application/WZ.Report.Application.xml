@@ -1,0 +1,588 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WZ.Report.Application</name>
+    </assembly>
+    <members>
+        <member name="T:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel">
+            <summary>
+            党组书记统计表格
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.April">
+            <summary>
+            四月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.August">
+            <summary>
+            八月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.December">
+            <summary>
+            十二月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.February">
+            <summary>
+            二月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.January">
+            <summary>
+            一月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.July">
+            <summary>
+            七月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.June">
+            <summary>
+            六月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.March">
+            <summary>
+            三月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.May">
+            <summary>
+            五月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.Name">
+            <summary>
+            单位名称姓名 单位名称
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.PhoneNameDepartment">
+            <summary>
+            主体负责人姓名 联系电话
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.November">
+            <summary>
+            十一月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.October">
+            <summary>
+            十月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.Phone">
+            <summary>
+            承办人联系方式
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.September">
+            <summary>
+            九月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.Undertaker">
+            <summary>
+            经办人
+            </summary>
+        </member>
+        <member name="T:WZ.Report.Application.AdminTableDto.CurrencyResultModel">
+            <summary>
+            部门负责人 领导班子成员统计表格
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.April">
+            <summary>
+            四月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.August">
+            <summary>
+            八月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.December">
+            <summary>
+            十二月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.February">
+            <summary>
+            二月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.January">
+            <summary>
+            一月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.July">
+            <summary>
+            七月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.June">
+            <summary>
+            六月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.March">
+            <summary>
+            三月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.May">
+            <summary>
+            五月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.Name">
+            <summary>
+            单位名称姓名 单位名称
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.November">
+            <summary>
+            十一月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.October">
+            <summary>
+            十月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.PhoneNameDepartment">
+            <summary>
+            主体负责人姓名 联系电话
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.Role">
+            <summary>
+            登记权限
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.September">
+            <summary>
+            九月
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.Undertaker">
+            <summary>
+            经办人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.Phone">
+            <summary>
+            承办人联系方式
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.DTO.LoginViewModel.UserName">
+            <summary>
+            用户名 使用 中文名称
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.DTO.LoginViewModel.PassWord">
+            <summary>
+            密码 班子成员 密码使用手机号  其他 使用用户名拼音
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.FillformDto.Tables">
+            <summary>
+            表格内容
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.FillformDto.TablesFour">
+            <summary>
+            附件四
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.FillformDto.TableFive">
+            <summary>
+            附件五
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinDto.ProjectName">
+            <summary>
+            项目名称
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinDto.RunCount">
+            <summary>
+            次数执行次数
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinDto.RunState">
+            <summary>
+            执行情况
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.Interviewee">
+            <summary>
+            被谈话人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.IntervieweeDepartment">
+            <summary>
+            被谈话人部门单位及职务
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.CreateDate">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.Address">
+            <summary>
+            地点
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.Takker">
+            <summary>
+            谈话人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.TakkerAddress">
+            <summary>
+            谈话人部门及职务
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.Record">
+            <summary>
+            记录人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.RecordDepartment">
+            <summary>
+            记录人地址
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.Content">
+            <summary>
+            谈话内容
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.IntervieweeMammer">
+            <summary>
+            被谈话人态度
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.TakkerSig">
+            <summary>
+            谈话人签名
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFiveDto.IntervieweeSig">
+            <summary>
+            被谈话人签名
+            </summary>
+        </member>
+        <member name="T:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFourDto">
+            <summary>
+            表格四 真实表格DTO
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFourDto.Department">
+            <summary>
+            部门 填报人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFourDto.InterventionName">
+            <summary>
+            干预过问人姓名
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFourDto.Job">
+            <summary>
+            职务
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFourDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.ProjectMinModel.ProjectMinFourDto.Situation">
+            <summary>
+            情况
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectDto.ProjectName">
+            <summary>
+            项目名称
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectDto.RunCount">
+            <summary>
+            次数执行次数
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectDto.RunState">
+            <summary>
+            执行情况
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectDto.LinkTable">
+            <summary>
+            指向其他表 暂时没有用到
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectDto.DefaultData">
+            <summary>
+            默认的数据
+            </summary>
+        </member>
+        <member name="T:WZ.Report.Application.ProjectDTO.ProjectFiveDto">
+            <summary>
+            附件五
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.CreateId">
+            <summary>
+            创建人Id
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Mounth">
+            <summary>
+            填报月份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Year">
+            <summary>
+            填报年份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Interviewee">
+            <summary>
+            被谈话人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.IntervieweeDepartment">
+            <summary>
+            被谈话人部门单位及职务
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.CreateDate">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Address">
+            <summary>
+            地点
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Takker">
+            <summary>
+            谈话人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.TakkerAddress">
+            <summary>
+            谈话人部门及职务
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Record">
+            <summary>
+            记录人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.RecordDepartment">
+            <summary>
+            记录人地址
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Content">
+            <summary>
+            谈话内容
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.IntervieweeMammer">
+            <summary>
+            被谈话人态度
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.TakkerSig">
+            <summary>
+            谈话人签名
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.IntervieweeSig">
+            <summary>
+            被谈话人签名
+            </summary>
+        </member>
+        <member name="T:WZ.Report.Application.ProjectDTO.ProjectFourDto">
+            <summary>
+            附件四
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Department">
+            <summary>
+            部门 填报人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.InterventionName">
+            <summary>
+            干预过问人姓名
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Job">
+            <summary>
+            职务
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Situation">
+            <summary>
+            情况
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Mounth">
+            <summary>
+            月份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Year">
+            <summary>
+            填报年份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ResutData.MessageModel`1.Status">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ResutData.MessageModel`1.Success">
+            <summary>
+            操作是否成功
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ResutData.MessageModel`1.Msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.ResutData.MessageModel`1.Response">
+            <summary>
+            返回数据集合
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.SysViewModel.AddAdminUser.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.SysViewModel.AddAdminUser.Username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.SysViewModel.AddUserModel.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.SysViewModel.AddUserModel.Username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.SysViewModel.AddUserModel.Role">
+            <summary>
+            职位
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.SysViewModel.DeleteUserTableModel.Mounth">
+            <summary>
+            填报月份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.SysViewModel.DeleteUserTableModel.Year">
+            <summary>
+            填报年份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.Data.Mounth">
+            <summary>
+            登记月份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.Data.Year">
+            <summary>
+            登记年份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.Data.TableData">
+            <summary>
+            表格数据
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteData.TablesFour">
+            <summary>
+            附件四
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteData.TableFive">
+            <summary>
+            附件五
+            </summary>
+        </member>
+        <member name="T:WZ.Report.Application.WriteProjectDto.WriteModel">
+            <summary>
+            表格Model
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.UserId">
+            <summary>
+            填报人Id
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.Role">
+            <summary>
+            填报权限
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.Mounth">
+            <summary>
+            填报月份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.Year">
+            <summary>
+            填报年份
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.Tables">
+            <summary>
+            表格内容
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.TablesFour">
+            <summary>
+            附件四
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.TableFive">
+            <summary>
+            附件五
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>F:\Code\WZ.Report\WZ.Report.Form\WZ.Report.Application\WZ.Report.Application.xml</DocumentationFile>
+    <OutputPath>..\WZ.Report.Api\bin\Debug\</OutputPath>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WZ.Report.Model\WZ.Report.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="WZ.Report.Application.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
