@@ -38,12 +38,14 @@ namespace WZ.Report.Api.Controllers
             if (UserId == 0)
             {
                 _logger.LogWarning($"{DateTime.Now} 请求GetTable access_token 无效");
+                this.HttpContext.Response.StatusCode = 401;
                 return Ok(new
                 {
                     Success = false,
                     Table = new List<object>(),
                     OtherTable = new object(),
-                    Msg = "Token无效 Httpcontext 解析失败"
+                    Msg = "Token无效 Httpcontext 解析失败",
+                    StatusCode = this.HttpContext.Response.StatusCode
                 });
             }
 
@@ -78,17 +80,21 @@ namespace WZ.Report.Api.Controllers
             if (userId == 0)
             {
                 _logger.LogWarning($"{DateTime.Now} 请求GetWriteState access_token 无效");
+                this.HttpContext.Response.StatusCode = 401;
                 return Ok(new
                 {
                     Success = false,
-                    Msg = "Token无效"
+                    Msg = "Token无效 Httpcontext 解析失败",
+                    StatusCode = this.HttpContext.Response.StatusCode
                 });
             }
             var result = await _ProjectInfoService.IsEnableMouth(userId, mouth, year);
             _logger.LogInformation($"IP: {_User.GetClientIP()} 用户名：{_User.Name} ID：{_User.ID}  查询了GetWriteState接口");
             return Ok(new
             {
-                Success = result
+                Success = result,
+                Msg="接口请求成功",
+                StatusCode=this.HttpContext.Response.StatusCode
             });
         }
 
@@ -104,10 +110,12 @@ namespace WZ.Report.Api.Controllers
             if (model.UserId == 0)
             {
                 _logger.LogWarning($"{DateTime.Now} 请求WriteTable access_token 无效");
+                this.HttpContext.Response.StatusCode = 401;
                 return Ok(new
                 {
                     Success = false,
-                    Msg = "Token无效 Httpcontext 解析失败"
+                    Msg = "Token无效 Httpcontext 解析失败",
+                    StatusCode = this.HttpContext.Response.StatusCode
                 });
             }
             model.Role = _User.GetRole();

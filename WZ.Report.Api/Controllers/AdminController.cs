@@ -111,7 +111,7 @@ namespace WZ.Report.Api.Controllers
         }
 
         /// <summary>
-        /// 管理员权限获取表格登记情况  ?部门负责人和班子成员返回的字段是一样的 党组书记的字段不一样 
+        /// 管理员权限获取表格登记情况  ?部门负责人和党组书记返回的字段是一样的 班子成员的字段不一样 
         /// </summary>
         /// <param name="RoleId">1 部门负责人 2 党组书记  3 班子成员</param>
         /// <param name="Year">要查询的年份</param>

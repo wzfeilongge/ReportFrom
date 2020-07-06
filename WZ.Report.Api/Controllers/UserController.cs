@@ -42,10 +42,12 @@ namespace WZ.Report.Api.Controllers
             if (id==0)
             {
                 _logger.LogWarning($"{DateTime.Now} 请求GetWriteInfo access_token 无效");
+                this.HttpContext.Response.StatusCode = 401;
                 return Ok(new
                 {
                     Sucess = false,
-                    Msg = "Token无效 Httpcontext 解析失败"
+                    Msg = "Token无效 Httpcontext 解析失败",
+                    StatusCode = this.HttpContext.Response.StatusCode
                 }) ;                                                 
             }
             var data = await _fillFormService.GetFillformDtos(pageindex, pagesize,id);

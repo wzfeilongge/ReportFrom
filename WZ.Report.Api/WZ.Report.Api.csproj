@@ -51,7 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AOP\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

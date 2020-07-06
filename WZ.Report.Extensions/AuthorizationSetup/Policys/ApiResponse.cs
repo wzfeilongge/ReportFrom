@@ -18,7 +18,7 @@ namespace WZ.Report.Extensions.AuthorizationSetup.Policys
                 case StatusCode.CODE401:
                     {
                         Status = 401;
-                        Value = "很抱歉，您无权访问该接口，请确保已经登录!";
+                        Value = "Token无效 Httpcontext 解析失败";
                     }
                     break;
                 case StatusCode.CODE403:
