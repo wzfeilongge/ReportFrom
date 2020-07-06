@@ -48,7 +48,6 @@ namespace WZ.Report.Api.Controllers
                     StatusCode = this.HttpContext.Response.StatusCode
                 });
             }
-
             var RoleId = _User.GetRole();
             var Table = await _ProjectInfoService.GetProjects(RoleId);
             if (Table == null || Table.Count < 0)
@@ -57,7 +56,8 @@ namespace WZ.Report.Api.Controllers
                 {
                     Success = false,
                     Table,
-                    OtherTable = new object()
+                    OtherTable = new object(),
+                    StatusCode = this.HttpContext.Response.StatusCode
                 });
             }
             var OtherTable = await _ProjectInfoService.GetOtherProjects(RoleId);
@@ -65,7 +65,8 @@ namespace WZ.Report.Api.Controllers
             {
                 Success = true,
                 Table,
-                OtherTable
+                OtherTable,
+                StatusCode = this.HttpContext.Response.StatusCode
             });
         }
 
@@ -124,7 +125,8 @@ namespace WZ.Report.Api.Controllers
             return Ok(new
             {
                 Success = result,
-                Msg = result == true ? "写入成功" : "写入失败"
+                Msg = result == true ? "写入成功" : "写入失败",
+                StatusCode = this.HttpContext.Response.StatusCode
             });
         }
     }

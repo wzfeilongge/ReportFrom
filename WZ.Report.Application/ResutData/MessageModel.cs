@@ -9,7 +9,7 @@ namespace WZ.Report.Application.ResutData
         /// <summary>
         /// 状态码
         /// </summary>
-        public int Status { get; set; } = 200;
+        public int StatusCode { get; set; } = 200;
         /// <summary>
         /// 操作是否成功
         /// </summary>

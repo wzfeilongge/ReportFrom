@@ -37,7 +37,7 @@ namespace WZ.Report.Extensions.AuthorizationSetup.Policys
 
             MessageModel = new MessageModel<string>()
             {
-                Status = Status,
+                StatusCode = Status,
                 Msg = Value,
                 Success = false
             };
