@@ -33,13 +33,12 @@ namespace WZ.Report.Api.Controllers
         [HttpGet("GetTable")]
         public async Task<IActionResult> GetTable()
         {
-
             var UserId = _User.ID;
             if (UserId == 0)
             {
                 _logger.LogWarning($"{DateTime.Now} 请求GetTable access_token 无效");
                 this.HttpContext.Response.StatusCode = 401;
-                return Ok(new
+                return Unauthorized(new
                 {
                     Success = false,
                     Table = new List<object>(),
@@ -82,7 +81,7 @@ namespace WZ.Report.Api.Controllers
             {
                 _logger.LogWarning($"{DateTime.Now} 请求GetWriteState access_token 无效");
                 this.HttpContext.Response.StatusCode = 401;
-                return Ok(new
+                return Unauthorized(new
                 {
                     Success = false,
                     Msg = "Token无效 Httpcontext 解析失败",
@@ -112,7 +111,7 @@ namespace WZ.Report.Api.Controllers
             {
                 _logger.LogWarning($"{DateTime.Now} 请求WriteTable access_token 无效");
                 this.HttpContext.Response.StatusCode = 401;
-                return Ok(new
+                return Unauthorized(new
                 {
                     Success = false,
                     Msg = "Token无效 Httpcontext 解析失败",

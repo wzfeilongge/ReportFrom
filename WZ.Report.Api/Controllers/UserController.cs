@@ -43,7 +43,7 @@ namespace WZ.Report.Api.Controllers
             {
                 _logger.LogWarning($"{DateTime.Now} 请求GetWriteInfo access_token 无效");
                 this.HttpContext.Response.StatusCode = 401;
-                return Ok(new
+                return Unauthorized(new
                 {
                     Sucess = false,
                     Msg = "Token无效 Httpcontext 解析失败",

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>F:\Code\WZ.Report\WZ.Report.Form\WZ.Report.Api\WZ.Report.Api.xml</DocumentationFile>
+    <DocumentationFile>..\WZ.Report.Api\WZ.Report.Api.xml</DocumentationFile>
     <OutputPath></OutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>

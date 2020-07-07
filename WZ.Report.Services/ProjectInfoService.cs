@@ -135,6 +135,15 @@ namespace WZ.Report.Services
                             item.RunState = item.DefaultData;
                         }
                     }
+
+                    if (model.TableFive.Count<1)
+                    {
+                        model.TableFive = new List<ProjectFiveDto>();
+                    }
+                    if (model.TablesFour.Count < 1)
+                    {
+                        model.TablesFour = new List<ProjectFourDto>();
+                    }
                     model.TableFive.ForEach(x => x.CreateId = data.Id);
 
                     model.TablesFour.ForEach(x =>

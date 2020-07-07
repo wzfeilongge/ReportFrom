@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WZ.Report.Application.AdminUserDto;
 using WZ.Report.Application.SysViewModel;
 using WZ.Report.Common;
 using WZ.Report.IServices;
@@ -14,10 +15,10 @@ namespace WZ.Report.Api.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IFillFormService _fillFormService;
+        private readonly ILogger<AdminController> _logger;
         private readonly IProjectInfoService _projectInfoService;
         private readonly IRegisterInfoService _registerInfoService;
         private readonly ISysUserService _sysUserServices;
-        private readonly ILogger<AdminController> _logger;
         private readonly IUser _user;
         public AdminController(ISysUserService sysUserServices, IProjectInfoService projectInfoService, IFillFormService fillFormService, IUser user, IRegisterInfoService registerInfoService, ILogger<AdminController> logger)
         {
@@ -27,6 +28,51 @@ namespace WZ.Report.Api.Controllers
             _registerInfoService = registerInfoService;
             _user = user;
             _logger = logger;
+        }
+
+        /// <summary>
+        ///  添加班子成员
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("AddUserInfoBan")]
+        public async Task<IActionResult> AddUserInfoBan([FromBody] AddBanModel addBanModel)
+        {
+            var data = await _sysUserServices.AddBanUser(addBanModel);
+            return Ok(new
+            {
+                Success = data,
+                StatusCode = this.HttpContext.Response.StatusCode
+            });
+        }
+
+        /// <summary>
+        ///  添加部门成员
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("AddUserInfoBumen")]
+        public async Task<IActionResult> AddUserInfoBumen([FromBody] AddBumenModel addBumen)
+        {
+            var data = await _sysUserServices.AddBumenUser(addBumen);
+            return Ok(new
+            {
+                Success = data,
+                StatusCode = this.HttpContext.Response.StatusCode
+            });
+        }
+
+        /// <summary>
+        ///  添加党组织成员
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("AddUserInfoDang")]
+        public async Task<IActionResult> AddUserInfoDang([FromBody] AddDangModel addDangModel)
+        {
+            var data = await _sysUserServices.AddDangUser(addDangModel);
+            return Ok(new
+            {
+                Success = data,
+                StatusCode = this.HttpContext.Response.StatusCode
+            });
         }
 
         /// <summary>
@@ -117,6 +163,7 @@ namespace WZ.Report.Api.Controllers
                 StatusCode = this.HttpContext.Response.StatusCode
             });
         }
+
         /// <summary>
         /// 管理员权限获取表格登记情况  ?部门负责人和党组书记返回的字段是一样的 班子成员的字段不一样 
         /// </summary>

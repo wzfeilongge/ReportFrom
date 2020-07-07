@@ -4,6 +4,24 @@
         <name>WZ.Report.Api</name>
     </assembly>
     <members>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.AddUserInfoBan(WZ.Report.Application.AdminUserDto.AddBanModel)">
+            <summary>
+             添加班子成员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.AddUserInfoBumen(WZ.Report.Application.AdminUserDto.AddBumenModel)">
+            <summary>
+             添加部门成员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.AddUserInfoDang(WZ.Report.Application.AdminUserDto.AddDangModel)">
+            <summary>
+             添加党组织成员
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:WZ.Report.Api.Controllers.AdminController.CreateAdminUser(WZ.Report.Application.SysViewModel.AddAdminUser)">
             <summary>
             添加一个管理员账户
@@ -15,6 +33,13 @@
             <summary>
             添加一个普通用户
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.DeleteUserTable(WZ.Report.Application.SysViewModel.DeleteUserTableModel)">
+            <summary>
+            删除一个用户ID的指定年份月份的表格数据
+            </summary>
+            <param name="deleteUserTableModel"></param>
             <returns></returns>
         </member>
         <member name="M:WZ.Report.Api.Controllers.AdminController.GetUserinfo">
@@ -30,21 +55,21 @@
             <param name="Id"></param>
             <returns></returns>
         </member>
-        <member name="M:WZ.Report.Api.Controllers.AdminController.DeleteUserTable(WZ.Report.Application.SysViewModel.DeleteUserTableModel)">
-            <summary>
-            删除一个用户ID的指定年份月份的表格数据
-            </summary>
-            <param name="deleteUserTableModel"></param>
-            <returns></returns>
-        </member>
         <member name="M:WZ.Report.Api.Controllers.AdminController.QueryReport(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            管理员权限获取表格登记情况  ?部门负责人和班子成员返回的字段是一样的 党组书记的字段不一样 
+            管理员权限获取表格登记情况  ?部门负责人和党组书记返回的字段是一样的 班子成员的字段不一样 
             </summary>
             <param name="RoleId">1 部门负责人 2 党组书记  3 班子成员</param>
             <param name="Year">要查询的年份</param>
             <param name="PageIndex">当前页码</param>
             <param name="PageSize">页码大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.UpdateUserInfo(WZ.Report.Application.SysViewModel.UpdateUserModel)">
+            <summary>
+            更新用户的用户名和密码
+            </summary>
+            <param name="updateUserModel"></param>
             <returns></returns>
         </member>
         <member name="M:WZ.Report.Api.Controllers.ShowTableController.GetTable">
