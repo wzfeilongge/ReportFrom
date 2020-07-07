@@ -27,8 +27,10 @@ namespace WZ.Report.Model
         /// </summary>
         public string UserPhone { get; set; }
 
-        //1 部门负责人  2 党组书记 3 班子成员 0管理员
-        public  int Role { get; set; }
+        /// <summary>
+        /// 1 部门负责人  2 党组书记 3 班子成员 0管理员
+        /// </summary>
+        public int Role { get; set; }
 
         /// <summary>
         /// 部门
@@ -52,6 +54,11 @@ namespace WZ.Report.Model
 
         [Column(IsVersion = true)]
         public int Version { get; set; }
+
+        /// <summary>
+        /// 软删除
+        /// </summary>
+        public bool IsDelete { get; set; } = false;
 
         public SysUser()
         {

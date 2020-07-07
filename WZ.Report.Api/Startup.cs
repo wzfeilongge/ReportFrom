@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using WZ.Report.Api.Filter;
 using WZ.Report.Api.Swagger;
 using WZ.Report.Common;
 using WZ.Report.Extensions.AuthorizationSetup;
@@ -61,7 +62,11 @@ namespace WZ.Report.Api
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddControllers().AddNewtonsoftJson(options =>
+            services.AddControllers(o=> 
+            {
+                o.Filters.Add(typeof(GlobalExceptionsFilter));
+
+            }).AddNewtonsoftJson(options =>
             {
                 //忽略循环引用
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;

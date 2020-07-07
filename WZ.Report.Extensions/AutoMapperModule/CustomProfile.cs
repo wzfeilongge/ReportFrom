@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WZ.Report.Application.AdminTableDto;
+using WZ.Report.Application.AdminUserDto;
 using WZ.Report.Application.InfoViewModel;
 using WZ.Report.Application.InfoViewModel.ProjectMinModel;
 using WZ.Report.Application.ProjectDTO;
@@ -54,6 +55,21 @@ namespace WZ.Report.Extensions.AutoMapperModule
 
 
 
+            #region 管理员添加各部门成员 DTO
+
+            CreateMap<SysUser, AddBanModel>();
+
+            CreateMap<AddBanModel, SysUser>();
+
+            CreateMap<SysUser, AddBumenModel>();
+
+            CreateMap<AddBumenModel, SysUser>();
+
+            CreateMap<SysUser, AddDangModel>();
+
+            CreateMap<AddDangModel, SysUser>();
+
+            #endregion
 
 
 

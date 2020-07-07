@@ -4,10 +4,10 @@
     "WZ.Report.Api": {
       "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "http://localhost:6001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:8370"
+      }
     },
     "Docker": {
       "commandName": "Docker",

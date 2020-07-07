@@ -55,7 +55,7 @@ namespace WZ.Report.Services
 
         public async Task<QueryDataModel> GetDataModelinfo(int UserId)
         {
-            var data = await _ISysUserServices.GetModelAsync(x => x.Id == UserId);
+            var data = await _ISysUserServices.GetModelAsync(x => x.Id == UserId && x.IsDelete == false);
             if (data != null)
             {
                 QueryDataModel queryDataModel = new QueryDataModel
@@ -107,7 +107,7 @@ namespace WZ.Report.Services
 
         public async Task<bool> IsEnableMouth(int UserId, int Mounth, int Year = 2020)
         {
-            var data = await _ISysUserServices.GetModelAsync(x => x.Id == UserId);
+            var data = await _ISysUserServices.GetModelAsync(x => x.Id == UserId && x.IsDelete == false);
             if (data != null)
             {
                 var FormData = await _FillFormService.GetModelAsync(x => x.UserId == UserId && x.Role == data.Role && x.Mounth == Mounth && x.Year == Year && x.IsDeleted == false);
@@ -125,7 +125,7 @@ namespace WZ.Report.Services
             var flag = await IsEnableMouth(model.UserId, model.Mounth, model.Year);
             if (flag)
             {
-                var data = await _ISysUserServices.GetModelAsync(x => x.Id == model.UserId && x.Role == model.Role);
+                var data = await _ISysUserServices.GetModelAsync(x => x.Id == model.UserId && x.Role == model.Role && x.IsDelete == false);
                 if (data != null)
                 {
                     foreach (var item in model.Tables)

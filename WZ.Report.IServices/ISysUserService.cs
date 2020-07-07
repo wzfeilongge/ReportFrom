@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using WZ.Report.Application.AdminUserDto;
 using WZ.Report.Application.DTO;
 using WZ.Report.Application.WriteProjectDto;
 using WZ.Report.IServices.Base;
@@ -40,5 +41,37 @@ namespace WZ.Report.IServices
         /// <param name="Role"></param>
         /// <returns></returns>
         Task<bool> CreateUser(string UserName,string Password,int Role);
+
+        /// <summary>
+        /// 更新用户的用户名和密码
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="UserName"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        Task<bool> UpdateUser(int UserId,string UserName,string Password);
+
+
+        /// <summary>
+        /// 添加党组书记
+        /// </summary>
+        /// <param name="dangModel"></param>
+        /// <returns></returns>
+        Task<bool> AddDangUser(AddDangModel dangModel);
+
+        /// <summary>
+        /// 添加班子成员
+        /// </summary>
+        /// <param name="banModel"></param>
+        /// <returns></returns>
+        Task<bool> AddBanUser(AddBanModel banModel);
+
+        /// <summary>
+        /// 添加部门成员
+        /// </summary>
+        /// <param name="dangModel"></param>
+        /// <returns></returns>
+        Task<bool> AddBumenUser(AddBumenModel dangModel);
+
     }
 }

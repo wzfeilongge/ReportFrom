@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WZ.Report.Application.InfoViewModel;
 using WZ.Report.Application.InfoViewModel.ProjectMinModel;
 using WZ.Report.Application.ProjectDTO;
+using WZ.Report.Common.Attribute;
 using WZ.Report.IRepository;
 using WZ.Report.IServices;
 using WZ.Report.Model;
@@ -46,6 +47,7 @@ namespace WZ.Report.Services
             _Mapper = Mapper;
         }
 
+        [UseTran]
         public async Task<bool> DeleteForm(int AdminID, int DelUserId, int Year, int Mounth)
         {
             var deldata = await base.BaseDal.GetModelAsync(x => x.UserId == DelUserId && x.Year == Year && x.Mounth == Mounth && x.IsDeleted == false);

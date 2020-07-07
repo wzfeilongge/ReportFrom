@@ -58,7 +58,8 @@ namespace WZ.Report.Api.Controllers
                 data,
                 count,
                 Page= pageindex,
-                PageSize= pagesize
+                PageSize= pagesize,
+                StatusCode = this.HttpContext.Response.StatusCode
             });
         }
 
@@ -77,13 +78,15 @@ namespace WZ.Report.Api.Controllers
                 {
                     Success = false,
                     Msg = "登录失败，用户名或密码错误",
+                    StatusCode = this.HttpContext.Response.StatusCode
                 });
             }
             return Ok(new MessageModel<LoginResultModel>
             {
                 Success = true,
                 Msg = "登录成功",
-                Response = data
+                Response = data,
+                StatusCode = this.HttpContext.Response.StatusCode
             });
         }
     }
