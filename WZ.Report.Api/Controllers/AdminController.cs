@@ -41,7 +41,7 @@ namespace WZ.Report.Api.Controllers
             return Ok(new
             {
                 Success = data,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -56,7 +56,7 @@ namespace WZ.Report.Api.Controllers
             return Ok(new
             {
                 Success = data,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -71,7 +71,7 @@ namespace WZ.Report.Api.Controllers
             return Ok(new
             {
                 Success = data,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -87,7 +87,7 @@ namespace WZ.Report.Api.Controllers
             return Ok(new
             {
                 Success = result,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -102,7 +102,7 @@ namespace WZ.Report.Api.Controllers
             return Ok(new
             {
                 Success = result,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -121,13 +121,13 @@ namespace WZ.Report.Api.Controllers
                 return Ok(new
                 {
                     Success = data,
-                    StatusCode = this.HttpContext.Response.StatusCode
+                    this.HttpContext.Response.StatusCode
                 });
             }
             return Ok(new
             {
                 Success = false,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -143,7 +143,7 @@ namespace WZ.Report.Api.Controllers
             {
                 data,
                 Success = true,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -160,7 +160,7 @@ namespace WZ.Report.Api.Controllers
             {
                 Success = true,
                 data,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -190,7 +190,7 @@ namespace WZ.Report.Api.Controllers
                 Success = true,
                 data,
                 datacount = count,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -206,7 +206,7 @@ namespace WZ.Report.Api.Controllers
             return Ok(new
             {
                 Success = data,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
     }

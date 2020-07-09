@@ -5,11 +5,12 @@ using System.Text;
 
 namespace WZ.Report.Model
 {
- 
-    [Table(Name ="sysuser")]
+
+
     /// <summary>
     /// 用户信息表
     /// </summary>
+    [Table(Name ="sysuser")]
     public class SysUser :Root
     {
         /// <summary>

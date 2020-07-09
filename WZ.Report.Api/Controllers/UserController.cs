@@ -47,7 +47,7 @@ namespace WZ.Report.Api.Controllers
                 {
                     Sucess = false,
                     Msg = "Token无效 Httpcontext 解析失败",
-                    StatusCode = this.HttpContext.Response.StatusCode
+                    this.HttpContext.Response.StatusCode
                 }) ;                                                 
             }
             var data = await _fillFormService.GetFillformDtos(pageindex, pagesize,id);
@@ -59,7 +59,7 @@ namespace WZ.Report.Api.Controllers
                 count,
                 Page= pageindex,
                 PageSize= pagesize,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 

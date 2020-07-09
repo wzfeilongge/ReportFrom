@@ -56,7 +56,7 @@ namespace WZ.Report.Api.Controllers
                     Success = false,
                     Table,
                     OtherTable = new object(),
-                    StatusCode = this.HttpContext.Response.StatusCode
+                    this.HttpContext.Response.StatusCode
                 });
             }
             var OtherTable = await _ProjectInfoService.GetOtherProjects(RoleId);
@@ -65,7 +65,7 @@ namespace WZ.Report.Api.Controllers
                 Success = true,
                 Table,
                 OtherTable,
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -85,7 +85,7 @@ namespace WZ.Report.Api.Controllers
                 {
                     Success = false,
                     Msg = "Token无效 Httpcontext 解析失败",
-                    StatusCode = this.HttpContext.Response.StatusCode
+                    this.HttpContext.Response.StatusCode
                 });
             }
             var result = await _ProjectInfoService.IsEnableMouth(userId, mouth, year);
@@ -94,7 +94,7 @@ namespace WZ.Report.Api.Controllers
             {
                 Success = result,
                 Msg="接口请求成功",
-                StatusCode=this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
 
@@ -115,7 +115,7 @@ namespace WZ.Report.Api.Controllers
                 {
                     Success = false,
                     Msg = "Token无效 Httpcontext 解析失败",
-                    StatusCode = this.HttpContext.Response.StatusCode
+                    this.HttpContext.Response.StatusCode
                 });
             }
             model.Role = _User.GetRole();
@@ -125,7 +125,7 @@ namespace WZ.Report.Api.Controllers
             {
                 Success = result,
                 Msg = result == true ? "写入成功" : "写入失败",
-                StatusCode = this.HttpContext.Response.StatusCode
+                this.HttpContext.Response.StatusCode
             });
         }
     }

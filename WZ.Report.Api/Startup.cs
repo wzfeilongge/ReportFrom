@@ -30,7 +30,7 @@ namespace WZ.Report.Api
 {
     public class Startup
     {
-       //  private IServiceCollection _services;
+        //  private IServiceCollection _services;
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
@@ -41,47 +41,8 @@ namespace WZ.Report.Api
 
         public IWebHostEnvironment Env { get; }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-         
-            services.AddSingleton(new Appsettings(Configuration));
-
-            services.AddSingleton(Reportcontext.freeSql);
-
-            services.AddFreeDbContext<Reportcontext>(options => options.UseFreeSql(Reportcontext.freeSql));
-
-            services.AddSingleton<IUser,AspNetUser>();
-
-            services.AddSwaggerSetup();
-
-            services.AddAutoMapperSetup();
-
-            services.AddCorsSetup();
-
-            services.AddAuthorizationSetup();// Jwt
-
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            services.AddControllers(o=> 
-            {
-                o.Filters.Add(typeof(GlobalExceptionsFilter));
-
-            }).AddNewtonsoftJson(options =>
-            {
-                //忽略循环引用
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                //不使用驼峰样式的key
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            }); ;
-        }
-
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new AutofacModuleRegister());
-        }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
 
             app.UseDefaultFiles();
@@ -113,6 +74,45 @@ namespace WZ.Report.Api
             {
                 endpoints.MapControllers();
             });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModuleRegister());
+        }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+
+            services.AddSingleton(new Appsettings(Configuration));
+
+            services.AddSingleton(Reportcontext.freeSql);
+
+            services.AddFreeDbContext<Reportcontext>(options => options.UseFreeSql(Reportcontext.freeSql));
+
+            services.AddSingleton<IUser, AspNetUser>();
+
+            services.AddSwaggerSetup();
+
+            services.AddAutoMapperSetup();
+
+            services.AddCorsSetup();
+
+            services.AddAuthorizationSetup();// Jwt
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddControllers(o =>
+            {
+                o.Filters.Add(typeof(GlobalExceptionsFilter));
+
+            }).AddNewtonsoftJson(options =>
+            {
+                //忽略循环引用
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                //不使用驼峰样式的key
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            }); ;
         }
     }
 }
