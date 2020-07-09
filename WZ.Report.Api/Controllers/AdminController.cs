@@ -38,6 +38,7 @@ namespace WZ.Report.Api.Controllers
         public async Task<IActionResult> AddUserInfoBan([FromBody] AddBanModel addBanModel)
         {
             var data = await _sysUserServices.AddBanUser(addBanModel);
+            _logger.LogInformation($"admin {_user.ID} 正在添加班子成员");
             return Ok(new
             {
                 Success = data,
@@ -53,6 +54,7 @@ namespace WZ.Report.Api.Controllers
         public async Task<IActionResult> AddUserInfoBumen([FromBody] AddBumenModel addBumen)
         {
             var data = await _sysUserServices.AddBumenUser(addBumen);
+            _logger.LogInformation($"admin {_user.ID} 正在添加部门成员");
             return Ok(new
             {
                 Success = data,
@@ -68,6 +70,7 @@ namespace WZ.Report.Api.Controllers
         public async Task<IActionResult> AddUserInfoDang([FromBody] AddDangModel addDangModel)
         {
             var data = await _sysUserServices.AddDangUser(addDangModel);
+            _logger.LogInformation($"admin {_user.ID} 正在添加党组组织");
             return Ok(new
             {
                 Success = data,
@@ -84,6 +87,7 @@ namespace WZ.Report.Api.Controllers
         public async Task<IActionResult> CreateAdminUser([FromBody] AddAdminUser model)
         {
             var result = await _sysUserServices.CreateAdmin(model.Username, model.Password);
+            _logger.LogInformation($"admin {_user.ID} 正在添加管理员账户");
             return Ok(new
             {
                 Success = result,
@@ -99,11 +103,30 @@ namespace WZ.Report.Api.Controllers
         public async Task<IActionResult> CreateUser([FromBody] AddUserModel model)
         {
             var result = await _sysUserServices.CreateUser(model.Username, model.Password, model.Role);
+            _logger.LogInformation($"admin {_user.ID} 正在添加普通用户");
             return Ok(new
             {
                 Success = result,
                 this.HttpContext.Response.StatusCode
             });
+        }
+
+        /// <summary>
+        ///  危险操作 软删除一个用户 提供Id 数据库里可以恢复
+        /// </summary>
+        /// <param name="deleteUserModel"></param>
+        /// <returns></returns>
+        [HttpPost("DeleteSysUserinfoId")]
+        public async Task<IActionResult> DeleteSysUserinfoId([FromBody] DeleteUserModel deleteUserModel)
+        {
+            var data = await _sysUserServices.DeleteUser(deleteUserModel.Id);
+            _logger.LogWarning($"admin {_user.ID} 正在删除用户ID {deleteUserModel.Id}");
+            return Ok(new
+            {
+                Success = data,
+                this.HttpContext.Response.StatusCode
+            });
+
         }
 
         /// <summary>
@@ -118,6 +141,7 @@ namespace WZ.Report.Api.Controllers
             {
                 var adminId = _user.ID;
                 var data = await _fillFormService.DeleteForm(adminId, deleteUserTableModel.DeleteUserTableId, deleteUserTableModel.Year, deleteUserTableModel.Mounth);
+                _logger.LogWarning($"admin {_user.ID} 正在删除用户ID {deleteUserTableModel.DeleteUserTableId} --{deleteUserTableModel.Year}年 --{deleteUserTableModel.Mounth}月份的表格数据");
                 return Ok(new
                 {
                     Success = data,
@@ -203,6 +227,7 @@ namespace WZ.Report.Api.Controllers
         public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserModel updateUserModel)
         {
             var data = await _sysUserServices.UpdateUser(updateUserModel.UserId, updateUserModel.UserName, updateUserModel.PassWord);
+            _logger.LogWarning($"admin {_user.ID} 正在修改用户ID {updateUserModel.UserId}的资料  Name={updateUserModel.UserName} Password={updateUserModel.PassWord}");
             return Ok(new
             {
                 Success = data,

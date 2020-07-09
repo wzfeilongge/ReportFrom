@@ -27,6 +27,7 @@ namespace WZ.Report.Services
             _mapper = mapper;
         }
 
+        [UseTran]
         public async Task<bool> AddBanUser(AddBanModel banModel)
         {
             var model = await base.BaseDal.GetModelAsync(x => x.UserName == banModel.UserName && x.IsDelete == false);
@@ -43,6 +44,7 @@ namespace WZ.Report.Services
             return false;
         }
 
+        [UseTran]
         public async Task<bool> AddBumenUser(AddBumenModel dangModel)
         {
             var model = await base.BaseDal.GetModelAsync(x => x.UserName == dangModel.UserName && x.IsDelete == false);
@@ -59,6 +61,7 @@ namespace WZ.Report.Services
             return false;
         }
 
+        [UseTran]
         public async Task<bool> AddDangUser(AddDangModel dangModel)
         {
             var model = await base.BaseDal.GetModelAsync(x => x.UserName == dangModel.UserName && x.IsDelete == false);
@@ -75,6 +78,7 @@ namespace WZ.Report.Services
             return false;
         }
 
+        [UseTran]
         public async Task<bool> CreateAdmin(string UserName, string Password)
         {
             var model = await base.BaseDal.GetModelAsync(x => x.UserName == UserName && x.IsDelete == false);
@@ -92,10 +96,10 @@ namespace WZ.Report.Services
                     return true;
                 }
             }
-
             return false;
         }
 
+        [UseTran]
         public async Task<bool> CreateUser(string UserName, string Password, int Role)
         {
             var model = await base.BaseDal.GetModelAsync(x => x.UserName == UserName && x.IsDelete == false);
@@ -117,6 +121,26 @@ namespace WZ.Report.Services
                     return true;
                 }
             }
+            return false;
+        }
+
+
+
+        [UseTran]
+        public async Task<bool> DeleteUser(int id)
+        {
+            var model = await base.BaseDal.GetModelAsync(x => x.Id == id && x.IsDelete == false);
+
+            if (model!=null)
+            {
+                model.IsDelete = true;
+                var result = await base.Modify(model);
+                if (result > 0)
+                {
+                    return true;
+                }
+            }
+        
             return false;
         }
 
@@ -151,11 +175,13 @@ namespace WZ.Report.Services
         public async Task<bool> UpdateUser(int UserId, string UserName, string Password)
         {
             var model = await base.BaseDal.GetModelAsync(x => x.Id == UserId);
-
             if (model != null)
             {
                 model.UserName = UserName;
-                model.Password = MD5Helper.MD5Encrypt32(Password);
+                if (!string.IsNullOrEmpty(Password))
+                {
+                    model.Password = MD5Helper.MD5Encrypt32(Password);
+                }               
                 var result = await base.Modify(model);
                 if (result > 0)
                 {

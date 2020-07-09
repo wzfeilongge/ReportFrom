@@ -264,6 +264,11 @@
             1 部门负责人  2 党组书记 3 班子成员 0管理员
             </summary>
         </member>
+        <member name="P:WZ.Report.Application.AdminUserDto.DeleteUserModel.Id">
+            <summary>
+            需要删除的用户ID 危险操作 内部软删除 可以恢复
+            </summary>
+        </member>
         <member name="P:WZ.Report.Application.DTO.LoginViewModel.UserName">
             <summary>
             用户名 使用 中文名称

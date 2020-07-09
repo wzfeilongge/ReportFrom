@@ -35,6 +35,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.DeleteSysUserinfoId(WZ.Report.Application.AdminUserDto.DeleteUserModel)">
+            <summary>
+             危险操作 软删除一个用户 提供Id 数据库里可以恢复
+            </summary>
+            <param name="deleteUserModel"></param>
+            <returns></returns>
+        </member>
         <member name="M:WZ.Report.Api.Controllers.AdminController.DeleteUserTable(WZ.Report.Application.SysViewModel.DeleteUserTableModel)">
             <summary>
             删除一个用户ID的指定年份月份的表格数据

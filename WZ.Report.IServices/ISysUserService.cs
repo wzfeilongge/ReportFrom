@@ -51,7 +51,6 @@ namespace WZ.Report.IServices
         /// <returns></returns>
         Task<bool> UpdateUser(int UserId,string UserName,string Password);
 
-
         /// <summary>
         /// 添加党组书记
         /// </summary>
@@ -72,6 +71,19 @@ namespace WZ.Report.IServices
         /// <param name="dangModel"></param>
         /// <returns></returns>
         Task<bool> AddBumenUser(AddBumenModel dangModel);
+
+
+        /// <summary>
+        /// ID 删除一个用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> DeleteUser(int id);
+
+
+
+
+
 
     }
 }
