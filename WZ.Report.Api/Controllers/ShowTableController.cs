@@ -38,7 +38,7 @@ namespace WZ.Report.Api.Controllers
             {
                 _logger.LogWarning($"{DateTime.Now} 请求GetTable access_token 无效");
                 this.HttpContext.Response.StatusCode = 401;
-                return Unauthorized(new
+                return Ok(new
                 {
                     Success = false,
                     Table = new List<object>(),
@@ -81,7 +81,7 @@ namespace WZ.Report.Api.Controllers
             {
                 _logger.LogWarning($"{DateTime.Now} 请求GetWriteState access_token 无效");
                 this.HttpContext.Response.StatusCode = 401;
-                return Unauthorized(new
+                return Ok(new
                 {
                     Success = false,
                     Msg = "Token无效 Httpcontext 解析失败",
@@ -111,7 +111,7 @@ namespace WZ.Report.Api.Controllers
             {
                 _logger.LogWarning($"{DateTime.Now} 请求WriteTable access_token 无效");
                 this.HttpContext.Response.StatusCode = 401;
-                return Unauthorized(new
+                return Ok(new
                 {
                     Success = false,
                     Msg = "Token无效 Httpcontext 解析失败",

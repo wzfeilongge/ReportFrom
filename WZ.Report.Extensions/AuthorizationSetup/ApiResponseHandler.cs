@@ -23,14 +23,14 @@ namespace WZ.Report.Extensions.AuthorizationSetup
         protected override async Task HandleChallengeAsync(AuthenticationProperties properties)
         {
             Response.ContentType = "application/json";
-            Response.StatusCode = StatusCodes.Status401Unauthorized;
+            Response.StatusCode = StatusCodes.Status200OK;
             await Response.WriteAsync(JsonConvert.SerializeObject((new ApiResponse(StatusCode.CODE401)).MessageModel));
         }
 
         protected override async Task HandleForbiddenAsync(AuthenticationProperties properties)
         {
             Response.ContentType = "application/json";
-            Response.StatusCode = StatusCodes.Status403Forbidden;
+            Response.StatusCode = StatusCodes.Status200OK;
             await Response.WriteAsync(JsonConvert.SerializeObject((new ApiResponse(StatusCode.CODE403)).MessageModel));
         }
 

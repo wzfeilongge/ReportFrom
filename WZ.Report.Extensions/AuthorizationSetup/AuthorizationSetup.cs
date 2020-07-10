@@ -62,7 +62,7 @@ namespace WZ.Report.Extensions.AuthorizationSetup
                 ValidateAudience = true,
                 ValidAudience = Audience,//订阅人
                 ValidateLifetime = true,
-                ClockSkew = TimeSpan.FromSeconds(30),
+                ClockSkew = TimeSpan.Zero,
                 RequireExpirationTime = true,
             };
 

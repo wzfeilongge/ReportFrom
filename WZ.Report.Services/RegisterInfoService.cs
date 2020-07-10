@@ -13,15 +13,12 @@ namespace WZ.Report.Services
 {
    public class RegisterInfoService :Base.BaseServices<RegisterInfo>, IRegisterInfoService
     {
-
         private readonly IRegisterInfoRepository _IRegisterInfoRepository;
 
         private readonly ISysUserService _sysUserService;
 
         private readonly IMapper _mapper;
-
-        
-
+       
         public RegisterInfoService(IRegisterInfoRepository registerInfoRepository, ISysUserService sysUserService, IMapper mapper)
         {
             _IRegisterInfoRepository = registerInfoRepository;
