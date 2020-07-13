@@ -8,6 +8,10 @@
     <OutputPath>..\WZ.Report.Api\bin\Debug\</OutputPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\WZ.Report.Api\bin\Debug\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="FreeSql.DbContext" Version="1.6.0" />
     <PackageReference Include="FreeSql.Provider.MySql" Version="1.6.0" />

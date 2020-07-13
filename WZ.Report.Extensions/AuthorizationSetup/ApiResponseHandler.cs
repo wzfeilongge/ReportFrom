@@ -30,6 +30,7 @@ namespace WZ.Report.Extensions.AuthorizationSetup
         protected override async Task HandleForbiddenAsync(AuthenticationProperties properties)
         {
             Response.ContentType = "application/json";
+            Console.WriteLine();
             Response.StatusCode = StatusCodes.Status200OK;
             await Response.WriteAsync(JsonConvert.SerializeObject((new ApiResponse(StatusCode.CODE403)).MessageModel));
         }

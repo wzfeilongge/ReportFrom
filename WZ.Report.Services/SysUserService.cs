@@ -146,7 +146,7 @@ namespace WZ.Report.Services
 
         public async Task<List<SysUser>> GetALLUser()
         {
-            return await sysUserRepository.Query(x => x.Id > 0);
+            return await sysUserRepository.Query(x => x.Id >= 1&&x.IsDelete==false&&x.Role!=0);
         }
 
         public async Task<LoginResultModel> Login(LoginViewModel loginViewModel)

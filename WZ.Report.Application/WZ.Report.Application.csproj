@@ -10,6 +10,11 @@
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\WZ.Report.Api\bin\Debug\</OutputPath>
+    <DocumentationFile>..\WZ.Report.Api\bin\Debug\WZ.Report.Application.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\WZ.Report.Model\WZ.Report.Model.csproj" />
   </ItemGroup>

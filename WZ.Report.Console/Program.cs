@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace WZ.Report.Console
         .UseNoneCommandParameter(true)
         .Build();
 
+        private static bool flag = true;
 
         public static void CodeFirst()
         {
@@ -36,10 +38,80 @@ namespace WZ.Report.Console
         public static void Main(string[] args)
         {
 
-               CodeFirst();
-          //  SeedUserData();
+            //     CodeFirst();
+            ////  SeedUserData();
 
-            System.Console.WriteLine($"执行结束");
+            //  System.Console.WriteLine($"执行结束");
+
+            //  System.Console.ReadKey();
+
+            //修改用户密码工具
+
+            while (flag)
+            {
+                System.Console.WriteLine("密码修改工具");
+
+                System.Console.WriteLine("请输入要修改密码的用户名");
+
+                var str = System.Console.ReadLine();
+
+                var repo = freeSql.GetRepository<SysUser>();
+
+                var data = repo.Where(x => x.UserName.Equals(str)).First();
+
+                if (data != null)
+                {
+                    System.Console.WriteLine($"找到用户{JsonConvert.SerializeObject(data)} ");
+
+                    System.Console.WriteLine("请输入要修改的密码");
+                    var pwd = System.Console.ReadLine();
+                    System.Console.WriteLine("请再次输入要修改的密码");
+                    var secpwd = System.Console.ReadLine();
+                    if (string.IsNullOrEmpty(pwd))
+                    {
+                        System.Console.WriteLine("请输入正确的密码");
+                        continue;
+                    }
+                    if (pwd.Equals(secpwd))
+                    {
+                        data.Password = MD5Helper.MD5Encrypt32(pwd);
+                        var result = repo.Update(data);
+
+                        if (result > 0)
+                        {
+                            System.Console.WriteLine("密码修改成功");
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("密码修改失败");
+                        }
+                    }
+                }
+                else
+                {
+                    System.Console.WriteLine("没有找到用户");
+                }
+
+                System.Console.WriteLine("密码是否继续修改");
+                System.Console.WriteLine("1继续  2退出");
+                var choose = System.Console.ReadLine();
+                switch (choose)
+                {
+                    case "1":
+                        flag = true;
+                        break;
+                    case "2":
+                        return;
+                    case "addtable":
+                        SeedData();
+                        return;
+                    case "adduserdata":
+                        SeedUserData();
+                        return;
+                    default:
+                        return;
+                }
+            }
 
             System.Console.ReadKey();
         }
@@ -432,193 +504,193 @@ namespace WZ.Report.Console
 
             #region 部门负责人种子数据
 
-            //List<SysUser> sysUserDepartment = new List<SysUser>
-            //{
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="徐民",
-            //        Department="人事处",
-            //        Password=MD5Helper.MD5Encrypt32("xumin")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="李平",
-            //        Department="宣教处",
-            //        Password=MD5Helper.MD5Encrypt32("liping")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="郑李武",
-            //        Department="机关党委",
-            //        Password=MD5Helper.MD5Encrypt32("zhengliwu")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="陈如良",
-            //        Department="新闻宣教处",
-            //        Password=MD5Helper.MD5Encrypt32("chenruliang")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="戴真",
-            //        Department="立案庭",
-            //        Password=MD5Helper.MD5Encrypt32("daizhen")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="任国权",
-            //        Department="刑一庭",
-            //        Password=MD5Helper.MD5Encrypt32("renguoquan")
-            //    },
-            //    new SysUser
-            //    {
-            //       Role=1,
-            //        UserName="徐建伟",
-            //        Department="刑二庭",
-            //        Password=MD5Helper.MD5Encrypt32("xujianwei")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="夏孟宣",
-            //        Department="民一庭",
-            //        Password=MD5Helper.MD5Encrypt32("xiamengxuan")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="郑国栋",
-            //        Department="民二庭",
-            //        Password=MD5Helper.MD5Encrypt32("zhengguodong")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="陈锋",
-            //        Department="民三庭",
-            //        Password=MD5Helper.MD5Encrypt32("chenfeng")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="曹启东",
-            //        Department="民四庭",
-            //        Password=MD5Helper.MD5Encrypt32("caoqidong")
-            //    },
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="高兴兵",
-            //        Department="民五庭",
-            //        Password=MD5Helper.MD5Encrypt32("gaoxingbing")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="方飞潮",
-            //        Department="民六庭",
-            //        Password=MD5Helper.MD5Encrypt32("fangfeichao")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="林青青",
-            //        Department="行政一庭",
-            //        Password=MD5Helper.MD5Encrypt32("linqingqing")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="马永利",
-            //        Department="行政二庭",
-            //        Password=MD5Helper.MD5Encrypt32("caoqidong")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="吴忠烈",
-            //        Department="审监庭",
-            //        Password=MD5Helper.MD5Encrypt32("wuzhognlie")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="陈成荣",
-            //        Department="执行庭",
-            //        Password=MD5Helper.MD5Encrypt32("chenchengrong")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="丁前鹏",
-            //        Department="执行实施处",
-            //        Password=MD5Helper.MD5Encrypt32("dingqianpeng")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="叶淑红",
-            //        Department="执行监督处",
-            //        Password=MD5Helper.MD5Encrypt32("yeshuhong")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="朱若荪",
-            //        Department="研究室",
-            //        Password=MD5Helper.MD5Encrypt32("zhuruosun")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="徐克谊",
-            //        Department="审管办",
-            //        Password=MD5Helper.MD5Encrypt32("xukeyi")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="阮利平",
-            //        Department="法警支队",
-            //        Password=MD5Helper.MD5Encrypt32("ruanliping")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="张琛",
-            //        Department="司法鉴定处",
-            //        Password=MD5Helper.MD5Encrypt32("wangchen")
-            //    }
-            //    ,
-            //    new SysUser
-            //    {
-            //        Role=1,
-            //        UserName="韩安锦",
-            //        Department="行装处",
-            //        Password=MD5Helper.MD5Encrypt32("hananjin")
-            //    }
+            List<SysUser> sysUserDepartment = new List<SysUser>
+            {
+                new SysUser
+                {
+                    Role=1,
+                    UserName="徐民",
+                    Department="人事处",
+                    Password=MD5Helper.MD5Encrypt32("xumin")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="李平",
+                    Department="宣教处",
+                    Password=MD5Helper.MD5Encrypt32("liping")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="郑李武",
+                    Department="机关党委",
+                    Password=MD5Helper.MD5Encrypt32("zhengliwu")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="陈如良",
+                    Department="新闻宣教处",
+                    Password=MD5Helper.MD5Encrypt32("chenruliang")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="戴真",
+                    Department="立案庭",
+                    Password=MD5Helper.MD5Encrypt32("daizhen")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="任国权",
+                    Department="刑一庭",
+                    Password=MD5Helper.MD5Encrypt32("renguoquan")
+                },
+                new SysUser
+                {
+                   Role=1,
+                    UserName="徐建伟",
+                    Department="刑二庭",
+                    Password=MD5Helper.MD5Encrypt32("xujianwei")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="夏孟宣",
+                    Department="民一庭",
+                    Password=MD5Helper.MD5Encrypt32("xiamengxuan")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="郑国栋",
+                    Department="民二庭",
+                    Password=MD5Helper.MD5Encrypt32("zhengguodong")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="陈锋",
+                    Department="民三庭",
+                    Password=MD5Helper.MD5Encrypt32("chenfeng")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="曹启东",
+                    Department="民四庭",
+                    Password=MD5Helper.MD5Encrypt32("caoqidong")
+                },
+                new SysUser
+                {
+                    Role=1,
+                    UserName="高兴兵",
+                    Department="民五庭",
+                    Password=MD5Helper.MD5Encrypt32("gaoxingbing")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="方飞潮",
+                    Department="民六庭",
+                    Password=MD5Helper.MD5Encrypt32("fangfeichao")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="林青青",
+                    Department="行政一庭",
+                    Password=MD5Helper.MD5Encrypt32("linqingqing")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="马永利",
+                    Department="行政二庭",
+                    Password=MD5Helper.MD5Encrypt32("caoqidong")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="吴忠烈",
+                    Department="审监庭",
+                    Password=MD5Helper.MD5Encrypt32("wuzhognlie")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="陈成荣",
+                    Department="执行庭",
+                    Password=MD5Helper.MD5Encrypt32("chenchengrong")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="丁前鹏",
+                    Department="执行实施处",
+                    Password=MD5Helper.MD5Encrypt32("dingqianpeng")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="叶淑红",
+                    Department="执行监督处",
+                    Password=MD5Helper.MD5Encrypt32("yeshuhong")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="朱若荪",
+                    Department="研究室",
+                    Password=MD5Helper.MD5Encrypt32("zhuruosun")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="徐克谊",
+                    Department="审管办",
+                    Password=MD5Helper.MD5Encrypt32("xukeyi")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="阮利平",
+                    Department="法警支队",
+                    Password=MD5Helper.MD5Encrypt32("ruanliping")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="张琛",
+                    Department="司法鉴定处",
+                    Password=MD5Helper.MD5Encrypt32("wangchen")
+                }
+                ,
+                new SysUser
+                {
+                    Role=1,
+                    UserName="韩安锦",
+                    Department="行装处",
+                    Password=MD5Helper.MD5Encrypt32("hananjin")
+                }
 
 
 
 
-            //};
+            };
 
 
 
@@ -629,141 +701,141 @@ namespace WZ.Report.Console
             #region 党组书记 种子数据
 
 
-            //List<SysUser> users = new List<SysUser>
-            //{
-            //    new SysUser
-            //    {
+            List<SysUser> users = new List<SysUser>
+            {
+                new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="周丰",
-            //        JobAddress="鹿城法院",
-            //        Undertaker="彭飞琴",
-            //        UndertakerPhone="15757766256",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("zhoufeng")
-            //    },
-            //     new SysUser
-            //    {
+                    Role=2,
+                    UserName="周丰",
+                    JobAddress="鹿城法院",
+                    Undertaker="彭飞琴",
+                    UndertakerPhone="15757766256",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("zhoufeng")
+                },
+                 new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="李敏",
-            //        JobAddress="龙湾法院",
-            //        Undertaker="蕾迎晨",
-            //        UndertakerPhone="15205872883",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("limin")
-            //    },
-            //      new SysUser
-            //    {
+                    Role=2,
+                    UserName="李敏",
+                    JobAddress="龙湾法院",
+                    Undertaker="蕾迎晨",
+                    UndertakerPhone="15205872883",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("limin")
+                },
+                  new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="周虹",
-            //        JobAddress="瓯海法院",
-            //        Undertaker="王小军",
-            //        UndertakerPhone="13806856389",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("zhouhong")
-            //    },
-            //       new SysUser
-            //    {
+                    Role=2,
+                    UserName="周虹",
+                    JobAddress="瓯海法院",
+                    Undertaker="王小军",
+                    UndertakerPhone="13806856389",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("zhouhong")
+                },
+                   new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="李德通",
-            //        JobAddress="洞头法院",
-            //        Undertaker="郑怡",
-            //        UndertakerPhone="18757783686",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("lidetong")
-            //    },
-            //       new SysUser
-            //    {
-            //        Role=2,
-            //        UserName="林向光",
-            //        JobAddress="乐清法院",
-            //        Undertaker="林建林",
-            //        UndertakerPhone="13819778808",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("zhoufeng")
-            //    },
-            //         new SysUser
-            //    {
+                    Role=2,
+                    UserName="李德通",
+                    JobAddress="洞头法院",
+                    Undertaker="郑怡",
+                    UndertakerPhone="18757783686",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("lidetong")
+                },
+                   new SysUser
+                {
+                    Role=2,
+                    UserName="林向光",
+                    JobAddress="乐清法院",
+                    Undertaker="林建林",
+                    UndertakerPhone="13819778808",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("zhoufeng")
+                },
+                     new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="胡丕敢",
-            //        JobAddress="瑞安法院",
-            //        Undertaker="陈再武",
-            //        UndertakerPhone="18858761782",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("hupigan")
-            //    },
-            //          new SysUser
-            //    {
+                    Role=2,
+                    UserName="胡丕敢",
+                    JobAddress="瑞安法院",
+                    Undertaker="陈再武",
+                    UndertakerPhone="18858761782",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("hupigan")
+                },
+                      new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="杨兴明",
-            //        JobAddress="永嘉法院",
-            //        Undertaker="李俊",
-            //        UndertakerPhone="13968943963",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("yangxingming")
-            //    },
-            //           new SysUser
-            //    {
+                    Role=2,
+                    UserName="杨兴明",
+                    JobAddress="永嘉法院",
+                    Undertaker="李俊",
+                    UndertakerPhone="13968943963",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("yangxingming")
+                },
+                       new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="章禾舟",
-            //        JobAddress="文成法院",
-            //        Undertaker="刘洋洋",
-            //        UndertakerPhone="18358796166",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("zhanghezhou")
-            //    },
-            //            new SysUser
-            //    {
+                    Role=2,
+                    UserName="章禾舟",
+                    JobAddress="文成法院",
+                    Undertaker="刘洋洋",
+                    UndertakerPhone="18358796166",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("zhanghezhou")
+                },
+                        new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="刘万成",
-            //        JobAddress="平阳法院",
-            //        Undertaker="陈爽",
-            //        UndertakerPhone="13506630890",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("liuwancheng")
-            //    },
-            //     new SysUser
-            //    {
-            //        Role=2,
-            //        UserName="詹大勇",
-            //        JobAddress="泰顺法院",
-            //        Undertaker="董景对",
-            //        UndertakerPhone="13868393033",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("zhandayong")
-            //    },
-            //       new SysUser
-            //    {
-            //        Role=2,
-            //        UserName="陈斌",
-            //        JobAddress="苍南法院",
-            //        Undertaker="章国栋",
-            //        UndertakerPhone="18267851388",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("chenbin")
-            //    },
-            //     new SysUser
-            //    {
+                    Role=2,
+                    UserName="刘万成",
+                    JobAddress="平阳法院",
+                    Undertaker="陈爽",
+                    UndertakerPhone="13506630890",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("liuwancheng")
+                },
+                 new SysUser
+                {
+                    Role=2,
+                    UserName="詹大勇",
+                    JobAddress="泰顺法院",
+                    Undertaker="董景对",
+                    UndertakerPhone="13868393033",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("zhandayong")
+                },
+                   new SysUser
+                {
+                    Role=2,
+                    UserName="陈斌",
+                    JobAddress="苍南法院",
+                    Undertaker="章国栋",
+                    UndertakerPhone="18267851388",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("chenbin")
+                },
+                 new SysUser
+                {
 
-            //        Role=2,
-            //        UserName="董忠波",
-            //        JobAddress="龙港法院",
-            //        Undertaker="",
-            //        UndertakerPhone="",
-            //        Version=1,
-            //        Password=MD5Helper.MD5Encrypt32("dongzhongbo")
-            //    },
+                    Role=2,
+                    UserName="董忠波",
+                    JobAddress="龙港法院",
+                    Undertaker="",
+                    UndertakerPhone="",
+                    Version=1,
+                    Password=MD5Helper.MD5Encrypt32("dongzhongbo")
+                },
 
 
 
-            //};
+            };
 
 
 
@@ -772,23 +844,14 @@ namespace WZ.Report.Console
             #endregion
 
             //党组书记 数据
-         //   var dzsj = freeSql.Insert(users).ExecuteAffrows();
-          //  System.Console.WriteLine($"插入数据成功 党组书记数据{dzsj}条");
+            var dzsj = freeSql.Insert(users).ExecuteAffrows();
+            System.Console.WriteLine($"插入数据成功 党组书记数据{dzsj}条");
             //部门负责人种子数据
-        //    var department= freeSql.Insert(sysUserDepartment).ExecuteAffrows();
-        //    System.Console.WriteLine($"插入数据成功 部门负责人员数据{department}条");
+            var department = freeSql.Insert(sysUserDepartment).ExecuteAffrows();
+            System.Console.WriteLine($"插入数据成功 部门负责人员数据{department}条");
             //领导班子
-            var ldbz= freeSql.Insert(sysUsers).ExecuteAffrows();
+            var ldbz = freeSql.Insert(sysUsers).ExecuteAffrows();
             System.Console.WriteLine($"插入数据成功 班子人员数据{ldbz}条");
         }
-
-
-
-
-
-
-
-
-
     }
 }
