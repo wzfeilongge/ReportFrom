@@ -11,7 +11,7 @@ namespace WZ.Report.Application.DTO
         /// </summary>
         public string UserName { get; set; }
         /// <summary>
-        /// 密码 班子成员 密码使用手机号  其他 使用用户名拼音
+        /// 密码 使用用户名拼音
         /// </summary>
         public string PassWord { get; set; }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper.Configuration.Conventions;
 using Microsoft.AspNetCore.Http;
@@ -47,8 +48,10 @@ namespace WZ.Report.Api.Controllers
                     StatusCode = this.HttpContext.Response.StatusCode
                 });
             }
-            var RoleId = _User.GetRole();
-            var Table = await _ProjectInfoService.GetProjects(RoleId);
+            var Role = _User.GetRole();
+            
+          //  Console.WriteLine($"RoleId  {roleId}");
+            var Table = await _ProjectInfoService.GetProjects(Role);
             if (Table == null || Table.Count < 0)
             {
                 return Ok(new
@@ -59,7 +62,7 @@ namespace WZ.Report.Api.Controllers
                     this.HttpContext.Response.StatusCode
                 });
             }
-            var OtherTable = await _ProjectInfoService.GetOtherProjects(RoleId);
+            var OtherTable = await _ProjectInfoService.GetOtherProjects(Role);
             return Ok(new
             {
                 Success = true,

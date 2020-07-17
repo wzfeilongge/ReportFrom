@@ -25,5 +25,7 @@ namespace WZ.Report.Application.AdminUserDto
         /// 1 部门负责人  2 党组书记 3 班子成员 0管理员
         /// </summary>
         public int Role { get; set; } = 3;
+
+        public bool IsAdmin { get; set; } = false;
     }
 }

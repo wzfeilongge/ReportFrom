@@ -160,6 +160,7 @@ namespace WZ.Report.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetUserinfo")]
+        [Authorize]
         public async Task<IActionResult> GetUserinfo()
         {
             var data = await _sysUserServices.GetALLUser();

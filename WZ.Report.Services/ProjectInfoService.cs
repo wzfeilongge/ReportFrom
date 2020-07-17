@@ -110,7 +110,7 @@ namespace WZ.Report.Services
             var data = await _ISysUserServices.GetModelAsync(x => x.Id == UserId && x.IsDelete == false);
             if (data != null)
             {
-                var FormData = await _FillFormService.GetModelAsync(x => x.UserId == UserId && x.Role == data.Role && x.Mounth == Mounth && x.Year == Year && x.IsDeleted == false);
+                var FormData = await _FillFormService.GetModelAsync(x => x.UserId == UserId && x.Role==(data.Role) && x.Mounth == Mounth && x.Year == Year && x.IsDeleted == false);
                 if (FormData == null) //该年该月还未填写表
                 {
                     return true;
@@ -125,7 +125,7 @@ namespace WZ.Report.Services
             var flag = await IsEnableMouth(model.UserId, model.Mounth, model.Year);
             if (flag)
             {
-                var data = await _ISysUserServices.GetModelAsync(x => x.Id == model.UserId && x.Role == model.Role && x.IsDelete == false);
+                var data = await _ISysUserServices.GetModelAsync(x => x.Id == model.UserId && x.Role==( model.Role) && x.IsDelete == false);
                 if (data != null)
                 {
                     foreach (var item in model.Tables)
@@ -152,7 +152,9 @@ namespace WZ.Report.Services
                         x.Year = model.Year;
                         x.Mounth = model.Mounth;
                     });
-                    if (data.Role >= 1 && data.Role < 4)
+
+                    var dtrole = data.Role.ObjToInt();
+                    if (dtrole >= 1 && dtrole < 4)
                     {
                         var FillModel = new FillForm
                         {
@@ -181,7 +183,7 @@ namespace WZ.Report.Services
                                 var five = await _ConversationService.AddRangeModels(fivetable);
                                 _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  应插入表格5=>{fivetable.Count}条数据 实际插入{five}条数据");
                             }
-                            var SerachTable=  await _RegisterInfoService.WriteOrUpdateUserinfo(model.UserId,model.Role,model.Year,model.Mounth);
+                            var SerachTable=  await _RegisterInfoService.WriteOrUpdateUserinfo(model.UserId,dtrole,model.Year,model.Mounth);
                             if (SerachTable > 0)
                             {
                                 return true;

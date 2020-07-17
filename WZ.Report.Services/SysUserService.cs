@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WZ.Report.Application.AdminUserDto;
@@ -165,7 +166,8 @@ namespace WZ.Report.Services
                     RoleId = model.Role,
                     UserName = loginViewModel.UserName,
                     UserId = model.Id,
-                    AccessToken = accesstoken
+                    AccessToken = accesstoken,
+                    IsAdmin=model.IsAdmin
                 };
             }
             return null;

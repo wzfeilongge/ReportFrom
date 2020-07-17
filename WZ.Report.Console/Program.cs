@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Snowflake.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,12 +39,37 @@ namespace WZ.Report.Console
         public static void Main(string[] args)
         {
 
+
+           // var worker = new IdWorker(15,1);
+
+          //  var id = worker.NextId();
+          //  System.Console.WriteLine(id);
+
+
+            // DateTime.Now
+
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+
+
+
+            var time= ts.TotalSeconds;
+
+            System.Console.WriteLine(time);
+
+
             //     CodeFirst();
             ////  SeedUserData();
 
             //  System.Console.WriteLine($"执行结束");
 
             //  System.Console.ReadKey();
+
+
+
+
+           // System.Console.WriteLine(Math.PI);
+
+
 
             //修改用户密码工具
 
@@ -93,7 +119,7 @@ namespace WZ.Report.Console
                 }
 
                 System.Console.WriteLine("密码是否继续修改");
-                System.Console.WriteLine("1继续  2退出");
+                System.Console.WriteLine("1继续  2退出 3 addtable 4 adduserdata 5 add");
                 var choose = System.Console.ReadLine();
                 switch (choose)
                 {
@@ -107,6 +133,9 @@ namespace WZ.Report.Console
                         return;
                     case "adduserdata":
                         SeedUserData();
+                        return;
+                    case "add":
+                        add();
                         return;
                     default:
                         return;
@@ -515,28 +544,28 @@ namespace WZ.Report.Console
                 },
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="李平",
                     Department="宣教处",
                     Password=MD5Helper.MD5Encrypt32("liping")
                 },
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="郑李武",
                     Department="机关党委",
                     Password=MD5Helper.MD5Encrypt32("zhengliwu")
                 },
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="陈如良",
                     Department="新闻宣教处",
                     Password=MD5Helper.MD5Encrypt32("chenruliang")
                 },
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="戴真",
                     Department="立案庭",
                     Password=MD5Helper.MD5Encrypt32("daizhen")
@@ -550,28 +579,28 @@ namespace WZ.Report.Console
                 },
                 new SysUser
                 {
-                   Role=1,
+                    Role=1,
                     UserName="徐建伟",
                     Department="刑二庭",
                     Password=MD5Helper.MD5Encrypt32("xujianwei")
                 },
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="夏孟宣",
                     Department="民一庭",
                     Password=MD5Helper.MD5Encrypt32("xiamengxuan")
                 },
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="郑国栋",
                     Department="民二庭",
                     Password=MD5Helper.MD5Encrypt32("zhengguodong")
                 },
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="陈锋",
                     Department="民三庭",
                     Password=MD5Helper.MD5Encrypt32("chenfeng")
@@ -585,7 +614,7 @@ namespace WZ.Report.Console
                 },
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="高兴兵",
                     Department="民五庭",
                     Password=MD5Helper.MD5Encrypt32("gaoxingbing")
@@ -593,7 +622,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="方飞潮",
                     Department="民六庭",
                     Password=MD5Helper.MD5Encrypt32("fangfeichao")
@@ -601,7 +630,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="林青青",
                     Department="行政一庭",
                     Password=MD5Helper.MD5Encrypt32("linqingqing")
@@ -609,7 +638,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="马永利",
                     Department="行政二庭",
                     Password=MD5Helper.MD5Encrypt32("caoqidong")
@@ -617,7 +646,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="吴忠烈",
                     Department="审监庭",
                     Password=MD5Helper.MD5Encrypt32("wuzhognlie")
@@ -625,7 +654,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="陈成荣",
                     Department="执行庭",
                     Password=MD5Helper.MD5Encrypt32("chenchengrong")
@@ -633,7 +662,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="丁前鹏",
                     Department="执行实施处",
                     Password=MD5Helper.MD5Encrypt32("dingqianpeng")
@@ -641,7 +670,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="叶淑红",
                     Department="执行监督处",
                     Password=MD5Helper.MD5Encrypt32("yeshuhong")
@@ -649,7 +678,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="朱若荪",
                     Department="研究室",
                     Password=MD5Helper.MD5Encrypt32("zhuruosun")
@@ -657,7 +686,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="徐克谊",
                     Department="审管办",
                     Password=MD5Helper.MD5Encrypt32("xukeyi")
@@ -665,7 +694,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="阮利平",
                     Department="法警支队",
                     Password=MD5Helper.MD5Encrypt32("ruanliping")
@@ -673,7 +702,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="张琛",
                     Department="司法鉴定处",
                     Password=MD5Helper.MD5Encrypt32("wangchen")
@@ -681,7 +710,7 @@ namespace WZ.Report.Console
                 ,
                 new SysUser
                 {
-                    Role=1,
+                     Role=1,
                     UserName="韩安锦",
                     Department="行装处",
                     Password=MD5Helper.MD5Encrypt32("hananjin")
@@ -852,6 +881,23 @@ namespace WZ.Report.Console
             //领导班子
             var ldbz = freeSql.Insert(sysUsers).ExecuteAffrows();
             System.Console.WriteLine($"插入数据成功 班子人员数据{ldbz}条");
+        }
+
+
+        public static void add()
+        {
+            SysUser s = new SysUser
+            {
+                Role = 2,
+                UserName = "徐亚农",
+                JobAddress = "温州中院",
+                Undertaker = "陈如良",
+                UndertakerPhone = "15869621269",
+                Version = 1,
+                UserPhone="13968850101",
+                Password = MD5Helper.MD5Encrypt32("xuyanong")
+            };
+            freeSql.Insert(s).ExecuteAffrows();
         }
     }
 }

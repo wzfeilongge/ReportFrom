@@ -16,12 +16,9 @@ namespace WZ.Report.Extensions.AuthorizationSetup
 {
     public static class AuthorizationSetup
     {
-
         public static void AddAuthorizationSetup(this IServiceCollection services)
         {
-
             if (services == null) throw new ArgumentNullException(nameof(services));
-
 
             #region 参数
             //读取配置文件
@@ -68,7 +65,8 @@ namespace WZ.Report.Extensions.AuthorizationSetup
 
             //2.1【认证】、core自带官方JWT认证
             // 开启Bearer认证
-            services.AddAuthentication(o => {
+            services.AddAuthentication(o =>
+            {
                 o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 o.DefaultChallengeScheme = nameof(ApiResponseHandler);
                 o.DefaultForbidScheme = nameof(ApiResponseHandler);
@@ -111,32 +109,9 @@ namespace WZ.Report.Extensions.AuthorizationSetup
              })
              .AddScheme<AuthenticationSchemeOptions, ApiResponseHandler>(nameof(ApiResponseHandler), o => { });
 
-
             services.AddScoped<IAuthorizationHandler, PermissionHandler>();
 
-
             services.AddSingleton(permissionRequirement);
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

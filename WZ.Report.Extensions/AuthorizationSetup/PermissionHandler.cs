@@ -42,7 +42,7 @@ namespace WZ.Report.Extensions.AuthorizationSetup
             var httpContext = _accessor.HttpContext;
             if (!requirement.Permissions.Any())
             {
-                var data =  await _ISysUserServices.GetALLUser();
+                var data =  (await _ISysUserServices.GetALLUser()).Where(x=>x.IsAdmin==true);
                 var list = (from item in data                     
                         orderby item.Id
                         select new PermissionItem

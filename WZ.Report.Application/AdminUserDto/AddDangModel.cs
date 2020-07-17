@@ -37,5 +37,7 @@ namespace WZ.Report.Application.AdminUserDto
         /// </summary>
         public int Role { get; set; } = 2;
 
+        public bool IsAdmin { get; set; } = false;
+
     }
 }

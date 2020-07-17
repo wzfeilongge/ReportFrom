@@ -42,7 +42,10 @@ namespace WZ.Report.Common
 
         public int GetRole()
         {
-            return JwtHelper.SerializeJwt(GetToken()).Role.ObjToInt();
+
+            var data = JwtHelper.SerializeJwt(GetToken());
+
+            return data.Role.ObjToInt();
 
         }
 

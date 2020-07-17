@@ -30,5 +30,7 @@ namespace WZ.Report.Application.AdminUserDto
         /// 部门
         /// </summary>
         public string Department { get; set; }
+
+        public bool IsAdmin { get; set; } = false;
     }
 }

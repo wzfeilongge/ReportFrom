@@ -33,6 +33,8 @@ namespace WZ.Report.Model
         /// </summary>
         public int Role { get; set; }
 
+        public bool IsAdmin { get; set; } = false;
+
         /// <summary>
         /// 部门
         /// </summary>

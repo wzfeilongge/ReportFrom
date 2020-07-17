@@ -20,7 +20,7 @@ namespace WZ.Report.IServices
         Task<LoginResultModel> Login(LoginViewModel loginViewModel);
 
         /// <summary>
-        /// 获取所有管理员用户信息
+        /// 获取所有用户信息 非删除
         /// </summary>
         /// <returns></returns>
         Task<List<SysUser>> GetALLUser();
