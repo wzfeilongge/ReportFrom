@@ -59,11 +59,10 @@ namespace WZ.Report.Extensions.AuthorizationSetup
                 var handlers = httpContext.RequestServices.GetRequiredService<IAuthenticationHandlerProvider>();
                 foreach (var scheme in await Schemes.GetRequestHandlerSchemesAsync())
                 {
-                    if (await handlers.GetHandlerAsync(httpContext, scheme.Name) is IAuthenticationRequestHandler handler && await handler.HandleRequestAsync())
-                    {
-                        context.Fail();
-                        return;
-                    }
+                    if (!(await handlers.GetHandlerAsync(httpContext, scheme.Name) is IAuthenticationRequestHandler
+                        handler) || !await handler.HandleRequestAsync()) continue;
+                    context.Fail();
+                    return;
                 }
                 //判断请求是否拥有凭据，即有没有登录
                 var defaultAuthenticate = await Schemes.GetDefaultAuthenticateSchemeAsync();
@@ -75,31 +74,35 @@ namespace WZ.Report.Extensions.AuthorizationSetup
                     {
                         httpContext.User = result.Principal;
                         // 获取当前用户的角色信息
-                        var currentUserRoles = new List<string>();                    
+                        // jwt
+                            var currentUserRoles = (from item in httpContext.User.Claims
+                                where item.Type == requirement.ClaimType
+                                select item.Value).ToList();
+                          //  var isMatchRole = false;
+                          //  var permisssionRoles = requirement.Permissions.Where(w => currentUserRoles.Contains(w.Role));
+                            //验证权限
+                            if (currentUserRoles.Count < 0 )
+                            {
+                                context.Fail();
+                                return;
+                            }
+                            var isExp = false;
                             // jwt
-                            currentUserRoles = (from item in httpContext.User.Claims
-                                                where item.Type == requirement.ClaimType
-                                                select item.Value).ToList();                      
-                        var isMatchRole = false;
-                        var permisssionRoles = requirement.Permissions.Where(w => currentUserRoles.Contains(w.Role));              
-                        //验证权限
-                        if (currentUserRoles.Count <= 0 || !isMatchRole)
-                        {
-                            context.Fail();
-                            return;
-                        }
-                        var isExp = false;                      
-                            // jwt
-                        isExp = (httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) != null && DateTime.Parse(httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) >= DateTime.Now;                   
-                        if (isExp)
-                        {
-                            context.Succeed(requirement);
-                        }
-                        else
-                        {
-                            context.Fail();
-                            return;
-                        }
+
+                            var time = DateTime.Parse(
+                                httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value ??
+                                string.Empty);
+
+                            isExp = (httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) != null && DateTime.Parse(httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value ?? string.Empty) >= DateTime.Now;
+                            if (isExp)
+                            {
+                                context.Succeed(requirement);
+                            }
+                            else
+                            {
+                                context.Fail();
+                                return;
+                            }
                         return;
                     }
                 }
@@ -107,7 +110,6 @@ namespace WZ.Report.Extensions.AuthorizationSetup
                 if (!(questUrl.Equals(requirement.LoginPath.ToLower(), StringComparison.Ordinal) && (!httpContext.Request.Method.Equals("POST") || !httpContext.Request.HasFormContentType)))
                 {
                     context.Fail();
-                    return;
                 }
             }
             //context.Succeed(requirement);

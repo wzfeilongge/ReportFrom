@@ -45,6 +45,6 @@ namespace WZ.Report.IServices
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
-        Task<QueryDataModel> GetDataModelinfo(int UserId);
+        Task<QueryDataModel> GetDataModelinfo(int UserId, int Year, int Mounth);
     }
 }

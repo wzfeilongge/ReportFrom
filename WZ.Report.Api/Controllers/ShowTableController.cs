@@ -50,7 +50,6 @@ namespace WZ.Report.Api.Controllers
             }
             var Role = _User.GetRole();
             
-          //  Console.WriteLine($"RoleId  {roleId}");
             var Table = await _ProjectInfoService.GetProjects(Role);
             if (Table == null || Table.Count < 0)
             {

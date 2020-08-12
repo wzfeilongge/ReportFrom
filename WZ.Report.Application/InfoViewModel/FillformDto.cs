@@ -11,14 +11,19 @@ namespace WZ.Report.Application.InfoViewModel
         public int Mounth { get; set; }
 
         /// <summary>
+        /// 责任人
+        /// </summary>
+        public string DutyPeople { get;set; }
+
+        /// <summary>
         /// 表格内容
         /// </summary>
-        public List<ProjectMinDto> Tables { get; set; }
+        public List<ProjectMinDto> TableData { get; set; }
         
         /// <summary>
         /// 附件四
         /// </summary>
-        public List<ProjectMinFourDto> TablesFour { get; set; }
+        public List<ProjectMinFourDto> TableFour { get; set; }
 
         /// <summary>
         /// 附件五

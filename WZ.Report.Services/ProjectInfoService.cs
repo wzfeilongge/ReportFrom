@@ -35,7 +35,7 @@ namespace WZ.Report.Services
         private readonly IQuestionsService _QuestionsServices;
         private readonly IRegisterInfoService _RegisterInfoService;
 
-      //  private readonly IUnitOfWork unitOfWork;
+        //  private readonly IUnitOfWork unitOfWork;
         public ProjectInfoService(IProjectInfoRepository ProjectInfoRepository, IMapper mapper
             , ISysUserService ISysUserServices, IFillFormService fillFormService
             , IQuestionsService QuestionsServices, IConversationService ConversationService
@@ -53,10 +53,10 @@ namespace WZ.Report.Services
             _Mapper = mapper;
         }
 
-        public async Task<QueryDataModel> GetDataModelinfo(int UserId)
+        public async Task<QueryDataModel> GetDataModelinfo(int UserId, int Year, int Mounth)
         {
             var data = await _ISysUserServices.GetModelAsync(x => x.Id == UserId && x.IsDelete == false);
-            if (data != null)
+            if (data == null) return new QueryDataModel();
             {
                 QueryDataModel queryDataModel = new QueryDataModel
                 {
@@ -64,26 +64,56 @@ namespace WZ.Report.Services
                     UserName = data.UserName,
                     Data = new List<Data>()
                 };
-                var FormData = await _FillFormService.Query(x => x.UserId == data.Id);
-                if (FormData != null)
+                var formData = await _FillFormService.Query(x => x.UserId == data.Id && x.Year == Year && x.Mounth == Mounth);
+                if (formData == null) return new QueryDataModel();
+                foreach (var item in formData)
                 {
-                    foreach (var item in FormData)
+                    var datas = new Data
                     {
-                        queryDataModel.Data.Add(
-                         new Data
-                         {
-                             Mounth = item.Mounth,
-                             Year = item.Year,
-                             TableData = _Mapper.Map<List<ProjectDto>>(JsonConvert.DeserializeObject<List<ProjectInfo>>(item.TableData)),
-                             TableFive = _Mapper.Map<ProjectFiveDto>(JsonConvert.DeserializeObject<Conversation>(item.TableFive)),
-                             TableFour = _Mapper.Map<ProjectFourDto>(JsonConvert.DeserializeObject<Questions>(item.TableFour))
-                         });
+                        DutyPeople = item.DutyPeople,
+                        Mounth = item.Mounth,
+                        Year = item.Year,
+                        TableData =
+                        _Mapper.Map<List<ProjectDto>>(JsonConvert.DeserializeObject<List<ProjectInfo>>(item.TableData)),
+                        TableFour = new List<ProjectFourDto>(),
+                        TableFive = new List<ProjectFiveDto>()
+                    };
+
+                    if (item.TableFive == "[]")
+                    {
+                        item.TableFive = string.Empty;
                     }
-                    queryDataModel.Count = queryDataModel.Data.Count;
-                    return queryDataModel;
+                    else
+                    {
+                        datas.TableFive =
+                            _Mapper.Map<List<ProjectFiveDto>>(JsonConvert.DeserializeObject<Conversation>(item.TableFive));
+                    }
+                    if (item.TableFour == "[]")
+                    {
+                        item.TableFour = string.Empty;
+                    }
+                    else
+                    {
+                        datas.TableFour =
+                            _Mapper.Map<List<ProjectFourDto>>(JsonConvert.DeserializeObject<Questions>(item.TableFour));
+                    }
+
+                    if (datas.TableFour == null || datas.TableFour.Count == 0)
+                    {
+                        datas.TableFour = new List<ProjectFourDto>();
+                    }
+
+                    if (datas.TableFive == null || datas.TableFive.Count == 0)
+                    {
+                        datas.TableFive = new List<ProjectFiveDto>();
+                    }
+
+                    queryDataModel.Data.Add(datas);
+
                 }
+                queryDataModel.Count = queryDataModel.Data.Count;
+                return queryDataModel;
             }
-            return new QueryDataModel();
         }
         //1 部门负责人  2 党组书记 3 班子成员 0管理员
         public async Task<object> GetOtherProjects(int Role)
@@ -108,10 +138,10 @@ namespace WZ.Report.Services
         public async Task<bool> IsEnableMouth(int UserId, int Mounth, int Year = 2020)
         {
             var data = await _ISysUserServices.GetModelAsync(x => x.Id == UserId && x.IsDelete == false);
-            if (data != null)
+            if (data == null) return false;
             {
-                var FormData = await _FillFormService.GetModelAsync(x => x.UserId == UserId && x.Role==(data.Role) && x.Mounth == Mounth && x.Year == Year && x.IsDeleted == false);
-                if (FormData == null) //该年该月还未填写表
+                var formData = await _FillFormService.GetModelAsync(x => x.UserId == UserId && x.Role == (data.Role) && x.Mounth == Mounth && x.Year == Year && x.IsDeleted == false);
+                if (formData == null) //该年该月还未填写表
                 {
                     return true;
                 }
@@ -123,84 +153,75 @@ namespace WZ.Report.Services
         public async Task<bool> WriteTableData(WriteModel model)
         {
             var flag = await IsEnableMouth(model.UserId, model.Mounth, model.Year);
-            if (flag)
+            if (!flag) return false;
+            var data = await _ISysUserServices.GetModelAsync(x => x.Id == model.UserId && x.Role == (model.Role) && x.IsDelete == false);
+            if (data == null) return false;
             {
-                var data = await _ISysUserServices.GetModelAsync(x => x.Id == model.UserId && x.Role==( model.Role) && x.IsDelete == false);
-                if (data != null)
+                foreach (var item in model.Tables.Where(item => item.RunState == string.Empty && item.DefaultData != null))
                 {
-                    foreach (var item in model.Tables)
-                    {
-                        if (item.RunState == string.Empty && item.DefaultData != null)
-                        {
-                            item.RunState = item.DefaultData;
-                        }
-                    }
-
-                    if (model.TableFive.Count<1)
-                    {
-                        model.TableFive = new List<ProjectFiveDto>();
-                    }
-                    if (model.TablesFour.Count < 1)
-                    {
-                        model.TablesFour = new List<ProjectFourDto>();
-                    }
-                    model.TableFive.ForEach(x => x.CreateId = data.Id);
-
-                    model.TablesFour.ForEach(x =>
-                    {
-                        x.CreateId = data.Id;
-                        x.Year = model.Year;
-                        x.Mounth = model.Mounth;
-                    });
-
-                    var dtrole = data.Role.ObjToInt();
-                    if (dtrole >= 1 && dtrole < 4)
-                    {
-                        var FillModel = new FillForm
-                        {
-                            UserId = model.UserId,
-                            Role = data.Role,
-                            Mounth = model.Mounth,
-                            Year = model.Year,
-                            TableData = JsonConvert.SerializeObject(model.Tables),
-                            TableFive = JsonConvert.SerializeObject(model.TableFive),
-                            TableFour = JsonConvert.SerializeObject(model.TablesFour),
-                            IsDeleted = false
-                        };
-                        var Form = await _FillFormService.Add(FillModel);
-                        _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  插入了1条数据");
-                        if (Form != null)
-                        {
-                            if (model.TablesFour.Count != 0)
-                            {
-                                var fourtable = _Mapper.Map<List<Questions>>(model.TablesFour);
-                                var four = await _QuestionsServices.AddRangeModels(fourtable);
-                                _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  应插入表格4=>{fourtable.Count}条数据 实际插入{four}条数据");
-                            }
-                            if (model.TableFive.Count != 0)
-                            {
-                                var fivetable = _Mapper.Map<List<Conversation>>(model.TableFive);
-                                var five = await _ConversationService.AddRangeModels(fivetable);
-                                _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  应插入表格5=>{fivetable.Count}条数据 实际插入{five}条数据");
-                            }
-                            var SerachTable=  await _RegisterInfoService.WriteOrUpdateUserinfo(model.UserId,dtrole,model.Year,model.Mounth);
-                            if (SerachTable > 0)
-                            {
-                                return true;
-                            }
-                            else {
-                                return false;
-                            }                
-                        }
-                        else
-                        {
-                            _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  翻车 插入通用表格失败");
-                            throw new Exception("创建失败，请联系管理员"); //AOP 回滚
-                        }
-                    }
+                    item.RunState = item.DefaultData;
                 }
+
+                if (model.TableFive.Count < 1)
+                {
+                    model.TableFive = new List<ProjectFiveDto>();
+                }
+                if (model.TablesFour.Count < 1)
+                {
+                    model.TablesFour = new List<ProjectFourDto>();
+                }
+                model.TableFive.ForEach(x => x.CreateId = data.Id);
+
+                model.TablesFour.ForEach(x =>
+                {
+                    x.CreateId = data.Id;
+                    x.Year = model.Year;
+                    x.Mounth = model.Mounth;
+                });
+
+                var trolley = data.Role.ObjToInt();
+                if (trolley < 1 || trolley >= 4) return false;
+
+                if (string.IsNullOrWhiteSpace(model.DutyPeople))
+                {
+                    model.DutyPeople = data.UserName;
+                }
+
+                var fillModel = new FillForm
+                {
+                    UserId = model.UserId,
+                    Role = data.Role,
+                    Mounth = model.Mounth,
+                    Year = model.Year,
+                    TableData = JsonConvert.SerializeObject(model.Tables),
+                    TableFive = JsonConvert.SerializeObject(model.TableFive),
+                    TableFour = JsonConvert.SerializeObject(model.TablesFour),
+                    DutyPeople = model.DutyPeople,
+                    IsDeleted = false
+                };
+                var form = await _FillFormService.Add(fillModel);
+                _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  插入了1条数据");
+                if (form != null)
+                {
+                    if (model.TablesFour.Count != 0)
+                    {
+                        var fourtable = _Mapper.Map<List<Questions>>(model.TablesFour);
+                        var four = await _QuestionsServices.AddRangeModels(fourtable);
+                        _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  应插入表格4=>{fourtable.Count}条数据 实际插入{four}条数据");
+                    }
+                    if (model.TableFive.Count != 0)
+                    {
+                        var fivetable = _Mapper.Map<List<Conversation>>(model.TableFive);
+                        var five = await _ConversationService.AddRangeModels(fivetable);
+                        _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  应插入表格5=>{fivetable.Count}条数据 实际插入{five}条数据");
+                    }
+                    var serachTable = await _RegisterInfoService.WriteOrUpdateUserinfo(model.UserId, trolley, model.Year, model.Mounth);
+                    return serachTable > 0;
+                }
+
+                _logger.LogInformation($" 用户名：{data.UserName} ID：{data.Id}  翻车 插入通用表格失败");
+                throw new Exception("创建失败，请联系管理员"); //AOP 回滚
             }
-            return false;
         }
     }
 }

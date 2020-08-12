@@ -34,8 +34,8 @@ namespace WZ.Report.Common.AuthHelper
                 new Claim(JwtRegisteredClaimNames.Jti, tokenModel.Uid.ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, $"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}"),
                 new Claim(JwtRegisteredClaimNames.Nbf,$"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}") ,
-                //这个就是过期时间，目前是过期2小时，可自定义，注意JWT有自己的缓冲过期时间
-                new Claim (JwtRegisteredClaimNames.Exp,$"{new DateTimeOffset(DateTime.Now.AddHours(2)).ToUnixTimeSeconds()}"),
+                //这个就是过期时间，目前是过期24小时，可自定义，注意JWT有自己的缓冲过期时间
+                new Claim (JwtRegisteredClaimNames.Exp,$"{new DateTimeOffset(DateTime.Now.AddHours(24)).ToUnixTimeSeconds()}"),
                 new Claim(ClaimTypes.Expiration, DateTime.Now.AddSeconds(1000).ToString()),
                 new Claim(JwtRegisteredClaimNames.Iss,iss),
                 new Claim(JwtRegisteredClaimNames.Aud,aud),    

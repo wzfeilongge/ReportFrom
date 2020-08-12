@@ -98,5 +98,11 @@ namespace WZ.Report.Application.AdminTableDto
         /// </summary>
         public string Phone { get; set; }
 
+
+        /// <summary>
+        /// 登记ID
+        /// </summary>
+        public int UserId { get; set; }
+
     }
 }

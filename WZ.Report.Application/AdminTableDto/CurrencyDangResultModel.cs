@@ -61,11 +61,6 @@ namespace WZ.Report.Application.AdminTableDto
         public string Name { get; set; }
 
         /// <summary>
-        /// 主体负责人姓名 联系电话
-        /// </summary>
-        public string PhoneNameDepartment { get; set; }
-
-        /// <summary>
         /// 十一月
         /// </summary>
         public bool November { get; set; } = false;
@@ -81,6 +76,11 @@ namespace WZ.Report.Application.AdminTableDto
         public string Phone { get; set; }
 
         /// <summary>
+        /// 主体负责人姓名 联系电话
+        /// </summary>
+        public string PhoneNameDepartment { get; set; }
+
+        /// <summary>
         /// 备注
         /// </summary>
         public string Remark { get; set; }
@@ -94,5 +94,10 @@ namespace WZ.Report.Application.AdminTableDto
         /// 经办人
         /// </summary>
         public string Undertaker { get; set; }
+
+        /// <summary>
+        /// 登记ID
+        /// </summary>
+        public int UserId { get; set; }
     }
 }

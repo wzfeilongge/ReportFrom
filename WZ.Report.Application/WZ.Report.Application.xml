@@ -59,11 +59,6 @@
             单位名称姓名 单位名称
             </summary>
         </member>
-        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.PhoneNameDepartment">
-            <summary>
-            主体负责人姓名 联系电话
-            </summary>
-        </member>
         <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.November">
             <summary>
             十一月
@@ -79,6 +74,11 @@
             承办人联系方式
             </summary>
         </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.PhoneNameDepartment">
+            <summary>
+            主体负责人姓名 联系电话
+            </summary>
+        </member>
         <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.Remark">
             <summary>
             备注
@@ -92,6 +92,11 @@
         <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.Undertaker">
             <summary>
             经办人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyDangResultModel.UserId">
+            <summary>
+            登记ID
             </summary>
         </member>
         <member name="T:WZ.Report.Application.AdminTableDto.CurrencyResultModel">
@@ -189,6 +194,11 @@
             承办人联系方式
             </summary>
         </member>
+        <member name="P:WZ.Report.Application.AdminTableDto.CurrencyResultModel.UserId">
+            <summary>
+            登记ID
+            </summary>
+        </member>
         <member name="P:WZ.Report.Application.AdminUserDto.AddBanModel.UserName">
             <summary>
             登录名称
@@ -276,15 +286,20 @@
         </member>
         <member name="P:WZ.Report.Application.DTO.LoginViewModel.PassWord">
             <summary>
-            密码 班子成员 密码使用手机号  其他 使用用户名拼音
+            密码 使用用户名拼音
             </summary>
         </member>
-        <member name="P:WZ.Report.Application.InfoViewModel.FillformDto.Tables">
+        <member name="P:WZ.Report.Application.InfoViewModel.FillformDto.DutyPeople">
+            <summary>
+            责任人
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.InfoViewModel.FillformDto.TableData">
             <summary>
             表格内容
             </summary>
         </member>
-        <member name="P:WZ.Report.Application.InfoViewModel.FillformDto.TablesFour">
+        <member name="P:WZ.Report.Application.InfoViewModel.FillformDto.TableFour">
             <summary>
             附件四
             </summary>
@@ -509,6 +524,11 @@
             附件四
             </summary>
         </member>
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Department">
             <summary>
             部门 填报人
@@ -524,19 +544,14 @@
             职务
             </summary>
         </member>
-        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Content">
+        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Mounth">
             <summary>
-            内容
+            月份
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Situation">
             <summary>
             情况
-            </summary>
-        </member>
-        <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Mounth">
-            <summary>
-            月份
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFourDto.Year">
@@ -624,6 +639,11 @@
             登记年份
             </summary>
         </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.Data.DutyPeople">
+            <summary>
+            责任人
+            </summary>
+        </member>
         <member name="P:WZ.Report.Application.WriteProjectDto.Data.TableData">
             <summary>
             表格数据
@@ -647,6 +667,11 @@
         <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.UserId">
             <summary>
             填报人Id
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.DutyPeople">
+            <summary>
+            责任人
             </summary>
         </member>
         <member name="P:WZ.Report.Application.WriteProjectDto.WriteModel.Role">

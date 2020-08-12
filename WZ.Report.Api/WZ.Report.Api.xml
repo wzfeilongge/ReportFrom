@@ -55,11 +55,13 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WZ.Report.Api.Controllers.AdminController.GetUserWriteState(System.Int32)">
+        <member name="M:WZ.Report.Api.Controllers.AdminController.GetUserWriteState(System.Int32,System.Int32,System.Int32)">
             <summary>
-            ID查询用户登记表格情况
+            ID 年 月查询用户登记表格情况
             </summary>
             <param name="Id"></param>
+            <param name="Year"></param>
+            <param name="Mounth"></param>
             <returns></returns>
         </member>
         <member name="M:WZ.Report.Api.Controllers.AdminController.QueryReport(System.Int32,System.Int32,System.Int32,System.Int32)">

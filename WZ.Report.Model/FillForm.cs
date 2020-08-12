@@ -18,6 +18,11 @@ namespace WZ.Report.Model
         public int UserId { get; set; }
 
         /// <summary>
+        /// 责任人
+        /// </summary>
+        public string DutyPeople { get; set; } 
+
+        /// <summary>
         /// 填报权限
         /// </summary>
         public int Role { get; set; }

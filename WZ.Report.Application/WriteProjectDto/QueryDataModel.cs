@@ -18,13 +18,18 @@ namespace WZ.Report.Application.WriteProjectDto
         public int Year { get; set; }
 
         /// <summary>
+        /// 责任人
+        /// </summary>
+        public string DutyPeople { get; set; }
+
+        /// <summary>
         /// 表格数据
         /// </summary>
         public List<ProjectDto> TableData { get; set; }
 
-        public ProjectFiveDto TableFive { get; set; }
+        public List<ProjectFiveDto> TableFive { get; set; }
 
-        public ProjectFourDto TableFour { get; set; }
+        public List<ProjectFourDto> TableFour { get; set; }
 
 
 
@@ -33,7 +38,6 @@ namespace WZ.Report.Application.WriteProjectDto
 
     public class QueryDataModel
     {
-
         public int Id { get; set; }
 
         public string UserName { get; set; }
@@ -41,7 +45,5 @@ namespace WZ.Report.Application.WriteProjectDto
         public List<Data> Data { get; set; }
 
         public int Count = 0;
-
-
     }
 }

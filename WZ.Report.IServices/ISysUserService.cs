@@ -72,18 +72,12 @@ namespace WZ.Report.IServices
         /// <returns></returns>
         Task<bool> AddBumenUser(AddBumenModel dangModel);
 
-
         /// <summary>
         /// ID 删除一个用户
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         Task<bool> DeleteUser(int id);
-
-
-
-
-
 
     }
 }

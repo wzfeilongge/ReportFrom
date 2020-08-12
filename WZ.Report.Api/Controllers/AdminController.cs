@@ -171,15 +171,18 @@ namespace WZ.Report.Api.Controllers
             });
         }
 
+
         /// <summary>
-        /// ID查询用户登记表格情况
+        /// ID 年 月查询用户登记表格情况
         /// </summary>
         /// <param name="Id"></param>
+        /// <param name="Year"></param>
+        /// <param name="Mounth"></param>
         /// <returns></returns>
         [HttpGet("GetUserWriteState")]
-        public async Task<IActionResult> GetUserWriteState(int Id)
+        public async Task<IActionResult> GetUserWriteState(int Id,int Year,int Mounth)
         {
-            var data = await _projectInfoService.GetDataModelinfo(Id);
+            var data = await _projectInfoService.GetDataModelinfo(Id,Year,Mounth);
             return Ok(new
             {
                 Success = true,
