@@ -132,28 +132,26 @@ namespace WZ.Report.Services
         {
             var model = await base.BaseDal.GetModelAsync(x => x.Id == id && x.IsDelete == false);
 
-            if (model!=null)
-            {
-                model.IsDelete = true;
-                var result = await base.Modify(model);
-                if (result > 0)
-                {
-                    return true;
-                }
-            }
-        
-            return false;
+            if (model == null) return false;
+            model.IsDelete = true;
+            var result = await base.Modify(model);
+            return result > 0;
         }
 
         public async Task<List<SysUser>> GetALLUser()
         {
-            return await sysUserRepository.Query(x => x.Id >= 1&&x.IsDelete==false&&x.Role!=0);
+            return await sysUserRepository.Query(x => x.Id >= 1 && x.IsDelete == false && x.Role != 0);
+        }
+
+        public async Task<List<SysUser>> GetAllUserData()
+        {
+            return await sysUserRepository.Query(x => x.Id >= 1 && x.IsDelete == false);
         }
 
         public async Task<LoginResultModel> Login(LoginViewModel loginViewModel)
         {
             loginViewModel.PassWord = MD5Helper.MD5Encrypt32(loginViewModel.PassWord);
-            var model = await sysUserRepository.GetModelAsync(x => x.UserName == loginViewModel.UserName && x.Password == loginViewModel.PassWord&&x.IsDelete==false);
+            var model = await sysUserRepository.GetModelAsync(x => x.UserName == loginViewModel.UserName && x.Password == loginViewModel.PassWord && x.IsDelete == false);
             if (model != null)
             {
                 var accesstoken = JwtHelper.IssueJwt(new TokenModelJwt
@@ -167,7 +165,7 @@ namespace WZ.Report.Services
                     UserName = loginViewModel.UserName,
                     UserId = model.Id,
                     AccessToken = accesstoken,
-                    IsAdmin=model.IsAdmin
+                    IsAdmin = model.IsAdmin
                 };
             }
             return null;
@@ -183,7 +181,7 @@ namespace WZ.Report.Services
                 if (!string.IsNullOrEmpty(Password))
                 {
                     model.Password = MD5Helper.MD5Encrypt32(Password);
-                }               
+                }
                 var result = await base.Modify(model);
                 if (result > 0)
                 {
@@ -191,6 +189,15 @@ namespace WZ.Report.Services
                 }
             }
             return false;
+        }
+
+        public async Task<bool> UpdateUserAdminRole(int userid, bool flag)
+        {
+            var model = await base.BaseDal.GetModelAsync(x => x.Id == userid);
+            if (model == null) return false;
+            model.IsAdmin = flag;
+            var result = await this.BaseDal.Modify(model);
+            return result > 0;
         }
     }
 }

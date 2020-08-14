@@ -30,10 +30,6 @@ namespace WZ.Report.Application.WriteProjectDto
         public List<ProjectFiveDto> TableFive { get; set; }
 
         public List<ProjectFourDto> TableFour { get; set; }
-
-
-
-
     }
 
     public class QueryDataModel

@@ -81,6 +81,13 @@
             <param name="updateUserModel"></param>
             <returns></returns>
         </member>
+        <member name="M:WZ.Report.Api.Controllers.AdminController.UpdateUserRole(WZ.Report.Application.AdminUserDto.UpdateUserRoleModel)">
+            <summary>
+            修改用户的管理员权限  传用户ID 和实际是否要启用的值 true/false
+            </summary>
+            <param name="updateUserModel"></param>
+            <returns></returns>
+        </member>
         <member name="M:WZ.Report.Api.Controllers.ShowTableController.GetTable">
             <summary>
             获取表格数据

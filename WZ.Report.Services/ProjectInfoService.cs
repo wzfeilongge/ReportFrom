@@ -74,7 +74,7 @@ namespace WZ.Report.Services
                         Mounth = item.Mounth,
                         Year = item.Year,
                         TableData =
-                        _Mapper.Map<List<ProjectDto>>(JsonConvert.DeserializeObject<List<ProjectInfo>>(item.TableData)),
+                        _Mapper.Map<List<ProjectDto>>(JsonConvert.DeserializeObject<List<ProjectDto>>(item.TableData)),
                         TableFour = new List<ProjectFourDto>(),
                         TableFive = new List<ProjectFiveDto>()
                     };
@@ -86,7 +86,7 @@ namespace WZ.Report.Services
                     else
                     {
                         datas.TableFive =
-                            _Mapper.Map<List<ProjectFiveDto>>(JsonConvert.DeserializeObject<Conversation>(item.TableFive));
+                            _Mapper.Map<List<ProjectFiveDto>>(JsonConvert.DeserializeObject<List<Conversation>>(item.TableFive));
                     }
                     if (item.TableFour == "[]")
                     {
@@ -95,7 +95,7 @@ namespace WZ.Report.Services
                     else
                     {
                         datas.TableFour =
-                            _Mapper.Map<List<ProjectFourDto>>(JsonConvert.DeserializeObject<Questions>(item.TableFour));
+                            _Mapper.Map<List<ProjectFourDto>>(JsonConvert.DeserializeObject<List<ProjectFourDto>>(item.TableFour));
                     }
 
                     if (datas.TableFour == null || datas.TableFour.Count == 0)

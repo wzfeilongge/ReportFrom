@@ -279,6 +279,16 @@
             需要删除的用户ID 危险操作 内部软删除 可以恢复
             </summary>
         </member>
+        <member name="P:WZ.Report.Application.AdminUserDto.UpdateUserRoleModel.Flag">
+            <summary>
+            是否是管理员
+            </summary>
+        </member>
+        <member name="P:WZ.Report.Application.AdminUserDto.UpdateUserRoleModel.UserId">
+            <summary>
+            要修改的用户ID
+            </summary>
+        </member>
         <member name="P:WZ.Report.Application.DTO.LoginViewModel.UserName">
             <summary>
             用户名 使用 中文名称
@@ -446,77 +456,77 @@
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.CreateId">
             <summary>
-            创建人Id
+            
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Mounth">
             <summary>
-            填报月份
+            
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Year">
             <summary>
-            填报年份
+            
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Interviewee">
             <summary>
-            被谈话人
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.IntervieweeDepartment">
             <summary>
-            被谈话人部门单位及职务
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.CreateDate">
             <summary>
-            时间
+            
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Address">
             <summary>
-            地点
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Takker">
             <summary>
-            谈话人
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.TakkerAddress">
             <summary>
-            谈话人部门及职务
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Record">
             <summary>
-            记录人
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.RecordDepartment">
             <summary>
-            记录人地址
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.Content">
             <summary>
-            谈话内容
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.IntervieweeMammer">
             <summary>
-            被谈话人态度
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.TakkerSig">
             <summary>
-            谈话人签名
+            8月测试1
             </summary>
         </member>
         <member name="P:WZ.Report.Application.ProjectDTO.ProjectFiveDto.IntervieweeSig">
             <summary>
-            被谈话人签名
+            8月测试1
             </summary>
         </member>
         <member name="T:WZ.Report.Application.ProjectDTO.ProjectFourDto">

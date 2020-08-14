@@ -42,7 +42,7 @@ namespace WZ.Report.Application.ProjectDTO
         /// </summary>
         public string Situation { get; set; }
 
-        public int TableId { get; set; }
+        public string TableId { get; set; }
         /// <summary>
         /// 填报年份
         /// </summary>

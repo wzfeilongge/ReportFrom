@@ -16,12 +16,9 @@ namespace WZ.Report.Extensions.AuthorizationSetup
 {
     public class PermissionHandler : AuthorizationHandler<PermissionRequirement>
     {
-        /// <summary>
-        /// 验证方案提供对象
-        /// </summary>
-        public IAuthenticationSchemeProvider Schemes { get; set; }
-        private readonly ISysUserService _ISysUserServices;
         private readonly IHttpContextAccessor _accessor;
+
+        private readonly ISysUserService _ISysUserServices;
 
         /// <summary>
         /// 构造函数注入
@@ -29,26 +26,31 @@ namespace WZ.Report.Extensions.AuthorizationSetup
         /// <param name="schemes"></param>
         /// <param name="roleModulePermissionServices"></param>
         /// <param name="accessor"></param>
-        public PermissionHandler(IAuthenticationSchemeProvider schemes,  IHttpContextAccessor accessor, ISysUserService ISysUserServices)
+        public PermissionHandler(IAuthenticationSchemeProvider schemes, IHttpContextAccessor accessor, ISysUserService ISysUserServices)
         {
             _accessor = accessor;
             Schemes = schemes;
             _ISysUserServices = ISysUserServices;
         }
 
+        /// <summary>
+        /// 验证方案提供对象
+        /// </summary>
+        public IAuthenticationSchemeProvider Schemes { get; set; }
         // 重写异步处理程序
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
         {
             var httpContext = _accessor.HttpContext;
+            var data = (await _ISysUserServices.GetAllUserData()).Where(x => x.IsAdmin == true);
             if (!requirement.Permissions.Any())
             {
-                var data =  (await _ISysUserServices.GetALLUser()).Where(x=>x.IsAdmin==true);
-                var list = (from item in data                     
-                        orderby item.Id
-                        select new PermissionItem
-                        {
-                            Role = item.ObjToString(),
-                        }).ToList();
+
+                var list = (from item in data
+                            orderby item.Id
+                            select new PermissionItem
+                            {
+                                Role = item.ObjToString(),
+                            }).ToList();
                 requirement.Permissions = list;
             }
             //请求Url
@@ -75,34 +77,36 @@ namespace WZ.Report.Extensions.AuthorizationSetup
                         httpContext.User = result.Principal;
                         // 获取当前用户的角色信息
                         // jwt
-                            var currentUserRoles = (from item in httpContext.User.Claims
-                                where item.Type == requirement.ClaimType
-                                select item.Value).ToList();
-                          //  var isMatchRole = false;
-                          //  var permisssionRoles = requirement.Permissions.Where(w => currentUserRoles.Contains(w.Role));
-                            //验证权限
-                            if (currentUserRoles.Count < 0 )
-                            {
-                                context.Fail();
-                                return;
-                            }
-                            var isExp = false;
-                            // jwt
+                        var currentUserRoles = (from item in httpContext.User.Claims
+                                                where item.Type == "jti"
+                                                select item.Value).FirstOrDefault();
+                        //  var isMatchRole = false;
+                        //  var permisssionRoles = requirement.Permissions.Where(w => currentUserRoles.Contains(w.Role));
+                        //验证权限
+                        var isadmin = data.FirstOrDefault(x => x.Id == currentUserRoles.ObjToInt());
 
-                            var time = DateTime.Parse(
-                                httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value ??
-                                string.Empty);
+                        if (isadmin == null)
+                        {
+                            context.Fail();
+                            return;
+                        }
+                        var isExp = false;
+                        // jwt
 
-                            isExp = (httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) != null && DateTime.Parse(httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value ?? string.Empty) >= DateTime.Now;
-                            if (isExp)
-                            {
-                                context.Succeed(requirement);
-                            }
-                            else
-                            {
-                                context.Fail();
-                                return;
-                            }
+                        var time = DateTime.Parse(
+                            httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value ??
+                            string.Empty);
+
+                        isExp = (httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) != null && DateTime.Parse(httpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value ?? string.Empty) >= DateTime.Now;
+                        if (isExp)
+                        {
+                            context.Succeed(requirement);
+                        }
+                        else
+                        {
+                            context.Fail();
+                            return;
+                        }
                         return;
                     }
                 }

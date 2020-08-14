@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -37,6 +38,10 @@ namespace WZ.Report.Api.Controllers
         [HttpPost("AddUserInfoBan")]
         public async Task<IActionResult> AddUserInfoBan([FromBody] AddBanModel addBanModel)
         {
+            if (_user.GetRole() != 0)
+            {
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
             var data = await _sysUserServices.AddBanUser(addBanModel);
             _logger.LogInformation($"admin {_user.ID} 正在添加班子成员");
             return Ok(new
@@ -53,6 +58,10 @@ namespace WZ.Report.Api.Controllers
         [HttpPost("AddUserInfoBumen")]
         public async Task<IActionResult> AddUserInfoBumen([FromBody] AddBumenModel addBumen)
         {
+            if (_user.GetRole() != 0)
+            {
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
             var data = await _sysUserServices.AddBumenUser(addBumen);
             _logger.LogInformation($"admin {_user.ID} 正在添加部门成员");
             return Ok(new
@@ -69,6 +78,10 @@ namespace WZ.Report.Api.Controllers
         [HttpPost("AddUserInfoDang")]
         public async Task<IActionResult> AddUserInfoDang([FromBody] AddDangModel addDangModel)
         {
+            if (_user.GetRole() != 0)
+            {
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
             var data = await _sysUserServices.AddDangUser(addDangModel);
             _logger.LogInformation($"admin {_user.ID} 正在添加党组组织");
             return Ok(new
@@ -86,6 +99,10 @@ namespace WZ.Report.Api.Controllers
         [HttpPost("CreateAdminUser")]
         public async Task<IActionResult> CreateAdminUser([FromBody] AddAdminUser model)
         {
+            if (_user.GetRole() != 0)
+            {
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
             var result = await _sysUserServices.CreateAdmin(model.Username, model.Password);
             _logger.LogInformation($"admin {_user.ID} 正在添加管理员账户");
             return Ok(new
@@ -102,6 +119,10 @@ namespace WZ.Report.Api.Controllers
         [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser([FromBody] AddUserModel model)
         {
+            if (_user.GetRole() != 0)
+            {
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
             var result = await _sysUserServices.CreateUser(model.Username, model.Password, model.Role);
             _logger.LogInformation($"admin {_user.ID} 正在添加普通用户");
             return Ok(new
@@ -119,6 +140,10 @@ namespace WZ.Report.Api.Controllers
         [HttpPost("DeleteSysUserinfoId")]
         public async Task<IActionResult> DeleteSysUserinfoId([FromBody] DeleteUserModel deleteUserModel)
         {
+            if (_user.GetRole() != 0)
+            {
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
             var data = await _sysUserServices.DeleteUser(deleteUserModel.Id);
             _logger.LogWarning($"admin {_user.ID} 正在删除用户ID {deleteUserModel.Id}");
             return Ok(new
@@ -137,20 +162,24 @@ namespace WZ.Report.Api.Controllers
         [HttpPost(("DeleteUserTable"))]
         public async Task<IActionResult> DeleteUserTable([FromBody] DeleteUserTableModel deleteUserTableModel)
         {
-            if (ModelState.IsValid)
+            if (_user.GetRole() != 0)
             {
-                var adminId = _user.ID;
-                var data = await _fillFormService.DeleteForm(adminId, deleteUserTableModel.DeleteUserTableId, deleteUserTableModel.Year, deleteUserTableModel.Mounth);
-                _logger.LogWarning($"admin {_user.ID} 正在删除用户ID {deleteUserTableModel.DeleteUserTableId} --{deleteUserTableModel.Year}年 --{deleteUserTableModel.Mounth}月份的表格数据");
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
+
+
+            if (!ModelState.IsValid)
                 return Ok(new
                 {
-                    Success = data,
+                    Success = false,
                     this.HttpContext.Response.StatusCode
                 });
-            }
+            var adminId = _user.ID;
+            var data = await _fillFormService.DeleteForm(adminId, deleteUserTableModel.DeleteUserTableId, deleteUserTableModel.Year, deleteUserTableModel.Mounth);
+            _logger.LogWarning($"admin {_user.ID} 正在删除用户ID {deleteUserTableModel.DeleteUserTableId} --{deleteUserTableModel.Year}年 --{deleteUserTableModel.Mounth}月份的表格数据");
             return Ok(new
             {
-                Success = false,
+                Success = data,
                 this.HttpContext.Response.StatusCode
             });
         }
@@ -180,9 +209,9 @@ namespace WZ.Report.Api.Controllers
         /// <param name="Mounth"></param>
         /// <returns></returns>
         [HttpGet("GetUserWriteState")]
-        public async Task<IActionResult> GetUserWriteState(int Id,int Year,int Mounth)
+        public async Task<IActionResult> GetUserWriteState(int Id, int Year, int Mounth)
         {
-            var data = await _projectInfoService.GetDataModelinfo(Id,Year,Mounth);
+            var data = await _projectInfoService.GetDataModelinfo(Id, Year, Mounth);
             return Ok(new
             {
                 Success = true,
@@ -203,7 +232,7 @@ namespace WZ.Report.Api.Controllers
         public async Task<IActionResult> QueryReport(int RoleId = 2, int Year = 2020, int PageIndex = 1, int PageSize = 10)
         {
             var data = new object();
-            long count = await _registerInfoService.GetCount(x => x.Role == RoleId && x.Year == Year);
+            var count = await _registerInfoService.GetCount(x => x.Role == RoleId && x.Year == Year);
             if (RoleId == 2)
             {
                 data = await _registerInfoService.GetModelinfoDang(Year, PageIndex, PageSize);
@@ -229,8 +258,36 @@ namespace WZ.Report.Api.Controllers
         [HttpPost("UpdateUserInfo")]
         public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserModel updateUserModel)
         {
+            if (_user.GetRole() != 0)
+            {
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
             var data = await _sysUserServices.UpdateUser(updateUserModel.UserId, updateUserModel.UserName, updateUserModel.PassWord);
             _logger.LogWarning($"admin {_user.ID} 正在修改用户ID {updateUserModel.UserId}的资料  Name={updateUserModel.UserName} Password={updateUserModel.PassWord}");
+            return Ok(new
+            {
+                Success = data,
+                this.HttpContext.Response.StatusCode
+            });
+        }
+
+
+
+
+        /// <summary>
+        /// 修改用户的管理员权限  传用户ID 和实际是否要启用的值 true/false
+        /// </summary>
+        /// <param name="updateUserModel"></param>
+        /// <returns></returns>
+        [HttpPost("UpdateUserRole")]
+        public async Task<IActionResult> UpdateUserRole([FromBody] UpdateUserRoleModel updateUserModel)
+        {
+            if (_user.GetRole() != 0)
+            {
+                throw new Exception("权限不足，请联系管理员使用启用该操作");
+            }
+
+            var data = await _sysUserServices.UpdateUserAdminRole(updateUserModel.UserId, updateUserModel.Flag);
             return Ok(new
             {
                 Success = data,

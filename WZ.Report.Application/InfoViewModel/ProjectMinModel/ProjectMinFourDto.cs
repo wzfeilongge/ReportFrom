@@ -10,7 +10,7 @@ namespace WZ.Report.Application.InfoViewModel.ProjectMinModel
     /// </summary>
    public class ProjectMinFourDto
     {
-        public int TableId { get; set; }
+        public string TableId { get; set; }
 
         /// <summary>
         /// 部门 填报人

@@ -11,77 +11,63 @@ namespace WZ.Report.Application.ProjectDTO
     {
 
         /// <summary>
-        /// 创建人Id
+        /// 
         /// </summary>
         public int CreateId { get; set; }
-
         /// <summary>
-        /// 填报月份
+        /// 
         /// </summary>
         public int Mounth { get; set; }
-
         /// <summary>
-        /// 填报年份
+        /// 
         /// </summary>
-        public int Year { get; set; } = 2020;
-
+        public int Year { get; set; }
         /// <summary>
-        /// 被谈话人
+        /// 8月测试1
         /// </summary>
         public string Interviewee { get; set; }
-
         /// <summary>
-        /// 被谈话人部门单位及职务
+        /// 8月测试1
         /// </summary>
         public string IntervieweeDepartment { get; set; }
-
         /// <summary>
-        /// 时间
+        /// 
         /// </summary>
         public DateTime CreateDate { get; set; }
-
         /// <summary>
-        /// 地点
+        /// 8月测试1
         /// </summary>
         public string Address { get; set; }
-
         /// <summary>
-        /// 谈话人
+        /// 8月测试1
         /// </summary>
         public string Takker { get; set; }
-
         /// <summary>
-        /// 谈话人部门及职务
+        /// 8月测试1
         /// </summary>
         public string TakkerAddress { get; set; }
-
         /// <summary>
-        /// 记录人
+        /// 8月测试1
         /// </summary>
         public string Record { get; set; }
-
         /// <summary>
-        /// 记录人地址
+        /// 8月测试1
         /// </summary>
         public string RecordDepartment { get; set; }
-
         /// <summary>
-        /// 谈话内容
+        /// 8月测试1
         /// </summary>
         public string Content { get; set; }
-
         /// <summary>
-        /// 被谈话人态度
+        /// 8月测试1
         /// </summary>
         public string IntervieweeMammer { get; set; }
-
         /// <summary>
-        /// 谈话人签名
+        /// 8月测试1
         /// </summary>
         public string TakkerSig { get; set; }
-
         /// <summary>
-        /// 被谈话人签名
+        /// 8月测试1
         /// </summary>
         public string IntervieweeSig { get; set; }
 
