@@ -80,8 +80,6 @@ namespace WZ.Report.Extensions.AuthorizationSetup
                         var currentUserRoles = (from item in httpContext.User.Claims
                                                 where item.Type == "jti"
                                                 select item.Value).FirstOrDefault();
-                        //  var isMatchRole = false;
-                        //  var permisssionRoles = requirement.Permissions.Where(w => currentUserRoles.Contains(w.Role));
                         //验证权限
                         var isadmin = data.FirstOrDefault(x => x.Id == currentUserRoles.ObjToInt());
 

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Renci.SshNet.Messages;
 using WZ.Report.Application.AdminUserDto;
 using WZ.Report.Application.SysViewModel;
 using WZ.Report.Common;
@@ -40,7 +41,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
             var data = await _sysUserServices.AddBanUser(addBanModel);
             _logger.LogInformation($"admin {_user.ID} 正在添加班子成员");
@@ -60,7 +66,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
             var data = await _sysUserServices.AddBumenUser(addBumen);
             _logger.LogInformation($"admin {_user.ID} 正在添加部门成员");
@@ -80,7 +91,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
             var data = await _sysUserServices.AddDangUser(addDangModel);
             _logger.LogInformation($"admin {_user.ID} 正在添加党组组织");
@@ -101,7 +117,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
             var result = await _sysUserServices.CreateAdmin(model.Username, model.Password);
             _logger.LogInformation($"admin {_user.ID} 正在添加管理员账户");
@@ -121,7 +142,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
             var result = await _sysUserServices.CreateUser(model.Username, model.Password, model.Role);
             _logger.LogInformation($"admin {_user.ID} 正在添加普通用户");
@@ -142,7 +168,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
             var data = await _sysUserServices.DeleteUser(deleteUserModel.Id);
             _logger.LogWarning($"admin {_user.ID} 正在删除用户ID {deleteUserModel.Id}");
@@ -164,7 +195,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
 
 
@@ -260,7 +296,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
             var data = await _sysUserServices.UpdateUser(updateUserModel.UserId, updateUserModel.UserName, updateUserModel.PassWord);
             _logger.LogWarning($"admin {_user.ID} 正在修改用户ID {updateUserModel.UserId}的资料  Name={updateUserModel.UserName} Password={updateUserModel.PassWord}");
@@ -270,9 +311,6 @@ namespace WZ.Report.Api.Controllers
                 this.HttpContext.Response.StatusCode
             });
         }
-
-
-
 
         /// <summary>
         /// 修改用户的管理员权限  传用户ID 和实际是否要启用的值 true/false
@@ -284,7 +322,12 @@ namespace WZ.Report.Api.Controllers
         {
             if (_user.GetRole() != 0)
             {
-                throw new Exception("权限不足，请联系管理员使用启用该操作");
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "权限不足，请联系管理员使用启用该操作",
+                    StatusCode = 200
+                });
             }
 
             var data = await _sysUserServices.UpdateUserAdminRole(updateUserModel.UserId, updateUserModel.Flag);

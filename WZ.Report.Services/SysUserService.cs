@@ -152,23 +152,20 @@ namespace WZ.Report.Services
         {
             loginViewModel.PassWord = MD5Helper.MD5Encrypt32(loginViewModel.PassWord);
             var model = await sysUserRepository.GetModelAsync(x => x.UserName == loginViewModel.UserName && x.Password == loginViewModel.PassWord && x.IsDelete == false);
-            if (model != null)
+            if (model == null) return null;
+            var accesstoken = JwtHelper.IssueJwt(new TokenModelJwt
             {
-                var accesstoken = JwtHelper.IssueJwt(new TokenModelJwt
-                {
-                    Role = model.Role.ToString(),
-                    Uid = model.Id
-                });
-                return new LoginResultModel
-                {
-                    RoleId = model.Role,
-                    UserName = loginViewModel.UserName,
-                    UserId = model.Id,
-                    AccessToken = accesstoken,
-                    IsAdmin = model.IsAdmin
-                };
-            }
-            return null;
+                Role = model.Role.ToString(),
+                Uid = model.Id
+            });
+            return new LoginResultModel
+            {
+                RoleId = model.Role,
+                UserName = loginViewModel.UserName,
+                UserId = model.Id,
+                AccessToken = accesstoken,
+                IsAdmin = model.IsAdmin
+            };
         }
 
         [UseTran]

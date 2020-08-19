@@ -9,7 +9,7 @@ namespace WZ.Report.Application.AdminUserDto
         /// <summary>
         /// 是否是管理员
         /// </summary>
-        public bool Flag { get; set; }
+        public bool Flag { get; set; } = false;
 
         /// <summary>
         /// 要修改的用户ID
