@@ -19,7 +19,6 @@ namespace WZ.Report.Extensions.SwaggerModule
 
             app.UseSwagger();
 
-
             string version = "WZ.Report.Api V1";
 
             app.UseSwaggerUI(c =>
@@ -29,35 +28,6 @@ namespace WZ.Report.Extensions.SwaggerModule
                 c.RoutePrefix = "swagger/index"; //路径配置，设置为空，表示直接在根域名（localhost:8001）访问该文件,注意localhost:8001/swagger是访问不到的，去
 
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
+    }
 }

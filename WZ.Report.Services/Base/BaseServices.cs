@@ -53,20 +53,17 @@ namespace WZ.Report.Services.Base
 
         public async Task<int> Modify(TEntity model)
         {
-
             return await BaseDal.Modify(model);
         }
 
         public async  Task<int> ModifyList(IEnumerable<TEntity> Models)
         {
             return await BaseDal.Modify(Models);
-           // throw new NotImplementedException();
         }
 
         public async Task<List<TEntity>> Query(Expression<Func<TEntity, bool>> whereLambda)
         {
             return await BaseDal.Query(whereLambda);
-
         }
     }
 }

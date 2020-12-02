@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "WZ.Report.IDS4": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:5070",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

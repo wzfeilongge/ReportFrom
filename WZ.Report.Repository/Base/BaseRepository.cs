@@ -25,11 +25,7 @@ namespace WZ.Report.Repository.Base
         public async Task<TEntity> Add(TEntity model)
         {
             await Domain.AddAsync(model);
-            if (await Context.SaveChangesAsync().ConfigureAwait(false) > 0)
-            {
-                return model;
-            }
-            return null;
+            return await Context.SaveChangesAsync().ConfigureAwait(false) > 0 ? model : null;
         }
 
         public async Task<int> AddModel(TEntity model)
@@ -64,7 +60,6 @@ namespace WZ.Report.Repository.Base
             {
                return await Domain.Where(whereLambda).Count(out var total).NoTracking().Page(pageIndex, pageSize).OrderByDescending(orderByLambda).ToListAsync();
             }
-            
         }
 
         public async Task<int> Modify(TEntity model)
@@ -91,9 +86,5 @@ namespace WZ.Report.Repository.Base
             return await Context.SaveChangesAsync().ConfigureAwait(false);
         }
 
-        public Task<bool> CanAdd(IEnumerable<TEntity> models)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

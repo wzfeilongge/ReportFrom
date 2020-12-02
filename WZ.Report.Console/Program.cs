@@ -11,10 +11,10 @@ namespace WZ.Report.Console
 {
     public class Program
     {
-        private static readonly string Connstr = "Server=127.0.0.1;Port=3309;Database=wzreport;Uid=root;Pwd=123456;Character Set=utf8";
+        private const string ConnectionString = "Server=127.0.0.1;Port=3309;Database=wzreport;Uid=root;Pwd=123456;Character Set=utf8";
 
         private static readonly IFreeSql freeSql = new FreeSql.FreeSqlBuilder()
-        .UseConnectionString((FreeSql.DataType.MySql), Connstr)
+        .UseConnectionString((FreeSql.DataType.MySql), ConnectionString)
         .UseMonitorCommand(cmd => Trace.WriteLine($"线程：{cmd.CommandText}\r\n"))
         .UseAutoSyncStructure(true)
         .UseNoneCommandParameter(true)
@@ -24,7 +24,7 @@ namespace WZ.Report.Console
 
         public static void CodeFirst()
         {
-            List<Type> types = new List<Type>
+            var types = new List<Type>
             {
                typeof(FillForm),
                typeof(ProjectInfo),
@@ -48,7 +48,7 @@ namespace WZ.Report.Console
 
             // DateTime.Now
 
-            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            var ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
 
 
 
@@ -103,14 +103,7 @@ namespace WZ.Report.Console
                         data.Password = MD5Helper.MD5Encrypt32(pwd);
                         var result = repo.Update(data);
 
-                        if (result > 0)
-                        {
-                            System.Console.WriteLine("密码修改成功");
-                        }
-                        else
-                        {
-                            System.Console.WriteLine("密码修改失败");
-                        }
+                        System.Console.WriteLine(result > 0 ? "密码修改成功" : "密码修改失败");
                     }
                 }
                 else
@@ -135,7 +128,7 @@ namespace WZ.Report.Console
                         SeedUserData();
                         return;
                     case "add":
-                        add();
+                        Add();
                         return;
                     default:
                         return;
@@ -429,12 +422,12 @@ namespace WZ.Report.Console
 
             #endregion
 
-            var resultdepartment = freeSql.Insert(projectInfosdepartment).ExecuteAffrows();
+            var departmental = freeSql.Insert(projectInfosdepartment).ExecuteAffrows();
 
-            System.Console.WriteLine($"插入数据成功 部门负责人数据{resultdepartment}条");
+            System.Console.WriteLine($"插入数据成功 部门负责人数据{departmental}条");
 
-            var resultsecretary = freeSql.Insert(projectsinfosecretary).ExecuteAffrows();
-            System.Console.WriteLine($"插入数据成功 党组书记数据{resultsecretary}条");
+            var undersecretary = freeSql.Insert(projectsinfosecretary).ExecuteAffrows();
+            System.Console.WriteLine($"插入数据成功 党组书记数据{undersecretary}条");
 
             var resultmember = freeSql.Insert(projectInfos).ExecuteAffrows();
             System.Console.WriteLine($"插入数据成功 班子成员数据{resultmember}条");
@@ -873,20 +866,20 @@ namespace WZ.Report.Console
             #endregion
 
             //党组书记 数据
-            var dzsj = freeSql.Insert(users).ExecuteAffrows();
-            System.Console.WriteLine($"插入数据成功 党组书记数据{dzsj}条");
+            var dz = freeSql.Insert(users).ExecuteAffrows();
+            System.Console.WriteLine($"插入数据成功 党组书记数据{dz}条");
             //部门负责人种子数据
             var department = freeSql.Insert(sysUserDepartment).ExecuteAffrows();
             System.Console.WriteLine($"插入数据成功 部门负责人员数据{department}条");
             //领导班子
-            var ldbz = freeSql.Insert(sysUsers).ExecuteAffrows();
-            System.Console.WriteLine($"插入数据成功 班子人员数据{ldbz}条");
+            var lldb = freeSql.Insert(sysUsers).ExecuteAffrows();
+            System.Console.WriteLine($"插入数据成功 班子人员数据{lldb}条");
         }
 
 
-        public static void add()
+        public static void Add()
         {
-            SysUser s = new SysUser
+            var s = new SysUser
             {
                 Role = 2,
                 UserName = "徐亚农",

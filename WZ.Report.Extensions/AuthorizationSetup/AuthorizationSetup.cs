@@ -48,6 +48,8 @@ namespace WZ.Report.Extensions.AuthorizationSetup
             {
                 options.AddPolicy(Permissions.Name,
                          policy => policy.Requirements.Add(permissionRequirement));
+
+              //  options.AddPolicy("admin", policy => policy.RequireRole("admin"));
             });
 
             var tokenValidationParameters = new TokenValidationParameters

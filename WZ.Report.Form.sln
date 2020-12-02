@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WZ.Report.Services", "WZ.Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WZ.Report.Extensions", "WZ.Report.Extensions\WZ.Report.Extensions.csproj", "{2ED539CA-CC07-4C22-A01B-F1F0E7DBF3A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WZ.Report.Console", "WZ.Report.Console\WZ.Report.Console.csproj", "{629549CD-5391-47AB-9FF1-68BA13A943F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WZ.Report.Console", "WZ.Report.Console\WZ.Report.Console.csproj", "{629549CD-5391-47AB-9FF1-68BA13A943F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WZ.Report.IDS4", "WZ.Report.IDS4\WZ.Report.IDS4.csproj", "{AD0344AD-E42E-4192-A120-A8E2BA1BA744}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{629549CD-5391-47AB-9FF1-68BA13A943F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{629549CD-5391-47AB-9FF1-68BA13A943F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{629549CD-5391-47AB-9FF1-68BA13A943F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD0344AD-E42E-4192-A120-A8E2BA1BA744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD0344AD-E42E-4192-A120-A8E2BA1BA744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD0344AD-E42E-4192-A120-A8E2BA1BA744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD0344AD-E42E-4192-A120-A8E2BA1BA744}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

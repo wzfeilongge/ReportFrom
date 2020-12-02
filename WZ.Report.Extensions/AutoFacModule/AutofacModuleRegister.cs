@@ -36,37 +36,20 @@ namespace WZ.Report.Extensions.AutoFacModule
             cacheType.Add(typeof(UnitOfWorkAOP));
 
             // 获取 Service.dll 程序集服务，并注册
-            var assemblysServices = Assembly.LoadFrom(servicesDllFile);
-            builder.RegisterAssemblyTypes(assemblysServices)
+            var assemblyServices = Assembly.LoadFrom(servicesDllFile);
+            builder.RegisterAssemblyTypes(assemblyServices)
                       .AsImplementedInterfaces()
                       .InstancePerDependency()
                       .EnableInterfaceInterceptors()//引用Autofac.Extras.DynamicProxy;
                       .InterceptedBy(cacheType.ToArray());//允许将拦截器服务的列表分配给注册。
 
             // 获取 Repository.dll 程序集服务，并注册
-            var assemblysRepository = Assembly.LoadFrom(repositoryDllFile);
-            builder.RegisterAssemblyTypes(assemblysRepository)
+            var assembliesRepository = Assembly.LoadFrom(repositoryDllFile);
+            builder.RegisterAssemblyTypes(assembliesRepository)
                    .AsImplementedInterfaces()
+               //    .EnableInterfaceInterceptors()
                    .InstancePerDependency();
-
-
-
-
-
-
-
             base.Load(builder);
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 }
